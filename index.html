@@ -411,7 +411,45 @@ footer .wrap{display:flex;flex-direction:column;gap:20px}
 .us-phone-row{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
 .us-phone-row .phone{position:relative;width:260px}
 
+/* global showcase: app shot in the hero, what-is cards, sports chips */
+.appshot{animation:rise .9s .15s cubic-bezier(.22,1,.36,1) both}
+.app{display:flex;flex-direction:column;gap:10px;padding:12px;background:#090909}
+.app-nav{display:flex;align-items:center;gap:14px;padding:4px 6px 8px;font-family:var(--f-ui);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);white-space:nowrap;overflow:hidden}
+.app-nav img{width:16px;height:18px;object-fit:contain}
+.app-nav .on{color:#fff;box-shadow:inset 0 -2px 0 var(--orange);padding-bottom:4px}
+.app-feat{position:relative;height:250px;border-radius:14px;overflow:hidden;background:radial-gradient(55% 90% at 15% 70%,rgba(255,40,40,.45),transparent 70%),radial-gradient(55% 90% at 85% 70%,rgba(50,90,255,.45),transparent 70%),#111}
+.app-feat>img{position:absolute;bottom:40px;height:190px;width:50%;object-fit:contain;object-position:bottom;-webkit-mask-image:linear-gradient(0deg,transparent,#000 40%);mask-image:linear-gradient(0deg,transparent,#000 40%)}
+.app-feat .l{left:-4%}.app-feat .r{right:-4%}
+.af-top{position:absolute;top:10px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--fg-2)}
+.af-top .tag{font-size:10px;padding:3px 8px}
+.af-bot{position:absolute;left:12px;right:12px;bottom:12px;display:flex;flex-direction:column;gap:7px}
+.af-bot small{font-family:var(--f-ui);font-size:10px;letter-spacing:.14em;color:var(--fg-3)}
+.af-bot>b{font-family:var(--f-disp);font-weight:900;font-size:22px;text-transform:uppercase;line-height:1}
+.af-bot>b span{color:var(--orange)}
+.af-bot .chance-bar{height:5px}
+.af-bot .px{padding:9px 12px;font-size:11px}.af-bot .px b{font-size:18px}
+.app-rows{display:grid;gap:6px}
+.app-row{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:10px;background:#131313;font-size:12px}
+.app-row small{display:block;font-family:var(--f-ui);font-size:9px;letter-spacing:.14em;color:var(--fg-3)}
+.app-row b{font-family:var(--f-ui);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.app-row .mono{color:var(--fg-2);font-size:12px}
+.what{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.wcard{padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.wcard>img{width:84px;height:84px;object-fit:contain;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5))}
+.wthumb{width:100%;height:84px;border-radius:12px;background:center/cover no-repeat}
+.wcard b{font-family:var(--f-disp);font-weight:900;font-size:24px;text-transform:uppercase}
+.wcard p{margin:0;color:var(--fg-2);font-size:15px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.trio div{padding:18px 20px;border-radius:16px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line)}
+.trio b{display:block;font-family:var(--f-ui);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.trio p{margin:4px 0 0;color:var(--fg-2);font-size:14px}
+.sports{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.sports span{padding:9px 16px;border-radius:99px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px var(--line);font-family:var(--f-ui);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-2)}
+.ev{grid-template-columns:86px 1fr auto}
+.final .lede{max-width:46ch}
+
 @media (max-width:1060px){
+  .what{grid-template-columns:1fr 1fr}.trio{grid-template-columns:1fr}
   .g-hero .wrap,.us-hero .wrap,.demo,.split,.stream,.fightpage{grid-template-columns:1fr}
   .markets{grid-template-columns:1fr 1fr}
   .ladder{grid-template-columns:repeat(4,1fr)}
@@ -423,6 +461,7 @@ footer .wrap{display:flex;flex-direction:column;gap:20px}
   .phones{height:600px;max-width:620px;margin-inline:auto;width:100%}
 }
 @media (max-width:640px){
+  .what{grid-template-columns:1fr}.app-nav span:nth-child(n+5){display:none}
   section.band{padding-block:84px}
   .nav-cta .hide-sm,.region{display:none}
   .markets{grid-template-columns:1fr}
@@ -452,8 +491,8 @@ footer .wrap{display:flex;flex-direction:column;gap:20px}
 <nav class="nav" aria-label="Main">
   <div class="wrap">
     <a class="brand" href="#global"><img src="img/mark.png" alt="">FIGHT</a>
-    <div class="nav-links"><a href="#g-markets">Markets</a><a href="#g-events">Events</a><a href="#g-live">Live</a><a href="#g-rewards">Rewards</a></div>
-    <div class="nav-cta"><span class="region">fightapp.com</span><a class="btn btn-dark btn-sm hide-sm" href="#g-join">Sign in</a><a class="btn btn-primary btn-sm" href="#g-join">Start trading</a></div>
+    <div class="nav-links"><a href="#g-what">What is Fight</a><a href="#g-markets">Markets</a><a href="#g-live">Live</a><a href="#g-rewards">Rewards</a></div>
+    <div class="nav-cta"><a class="btn btn-dark btn-sm hide-sm" href="#g-join">Sign in</a><a class="btn btn-primary btn-sm" href="#g-join">Get started</a></div>
   </div>
 </nav>
 
@@ -462,38 +501,52 @@ footer .wrap{display:flex;flex-direction:column;gap:20px}
   <canvas class="embers" id="embers" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="g-copy">
-      <span class="chip-live"><span class="dot"></span>Friday · Myrtle Beach · Markets open</span>
-      <h1 class="disp it">Richardson<span class="vs">vs Oxendine</span></h1>
-      <div class="meta"><span>BKFC main event</span><span><b class="mono">$19.4K</b> traded</span><span><b>3</b> markets</span><span>Starts <b class="mono" id="gStart">4H 02M</b></span></div>
-      <p class="lede">Every fight is a market. Buy shares in who wins, how it ends and when. Prices move live, and you can sell any time before the bell.</p>
-      <div class="cta-row"><a class="btn btn-primary" href="#g-markets">Predict now</a><a class="btn btn-dark" href="#g-how">How it works</a></div>
+      <span class="chip-live"><span class="dot"></span>Live every fight night</span>
+      <h1 class="disp it">The home of<span class="vs">fight night.</span></h1>
+      <p class="lede">Fight is where combat sports fans predict every fight, watch it live and compete with fans around the world. Call who wins, how it ends and when. Then prove you saw it coming.</p>
+      <div class="cta-row"><a class="btn btn-primary" href="#g-join">Get started</a><a class="btn btn-dark" href="#g-join">Sign in</a></div>
+      <div class="meta"><span><b>8</b> combat sports</span><span><b>Every</b> major league</span><span><b>Free</b> to join</span></div>
     </div>
-    <aside class="glass duel" aria-label="Who wins: Richardson vs Oxendine">
-      <div class="duel-top"><span>Who wins?</span><span class="mono" id="gVol">$19.4K vol</span></div>
-      <div class="cutouts"><img src="img/f-richardson.png" alt="Richardson"><img src="img/f-oxendine.png" alt="Oxendine"><span class="vs-mark">VS</span></div>
-      <div class="names"><div><b>Richardson</b><small>22-11-0 · US</small></div><div><b>Oxendine</b><small>10-7-0 · US</small></div></div>
-      <div class="chance">
-        <div class="chance-bar"><i id="cbR" style="width:48%"></i><i id="cbB" style="width:52%"></i></div>
-        <div class="chance-meta"><span><b id="cR">48%</b>chance</span><span><b id="cB">52%</b>chance</span></div>
+    <div class="browser appshot" aria-label="The Fight web app">
+      <div class="browser-bar"><i></i><i></i><i></i><span>fightapp.com</span></div>
+      <div class="app">
+        <div class="app-nav"><img src="img/mark.png" alt=""><span class="on">Home</span><span>Events</span><span>Record book</span><span>Feed</span><span>Leaderboard</span><span>Rewards</span></div>
+        <div class="app-feat">
+          <img class="l" src="img/f-richardson.png" alt=""><img class="r" src="img/f-oxendine.png" alt="">
+          <div class="af-top"><span class="tag"><span class="dot"></span>TONIGHT</span><span class="mono">$19.4K VOL</span></div>
+          <div class="af-bot">
+            <small>BKFC FIGHT NIGHT · MYRTLE BEACH</small>
+            <b>Richardson <span>vs</span> Oxendine</b>
+            <div class="chance-bar"><i style="width:48%"></i><i style="width:52%"></i></div>
+            <div class="px2"><span class="px r"><span>Richardson</span><b>49¢</b></span><span class="px b"><span>Oxendine</span><b>54¢</b></span></div>
+          </div>
+        </div>
+        <div class="app-rows">
+          <div class="app-row"><div><small>BOXING · INDIO</small><b>Jones vs Pettus</b></div><span class="mono">95¢ · 8¢</span></div>
+          <div class="app-row"><div><small>LFA 247 · PHOENIX</small><b>Breno vs Torres</b></div><span class="mono">55¢ · 48¢</span></div>
+          <div class="app-row"><div><small>FIGHT NIGHT · DOHA</small><b>Procházka vs Stirling</b></div><span class="mono">SAT</span></div>
+        </div>
       </div>
-      <div class="px2"><button class="px r" aria-pressed="false"><span>Richardson</span><b id="pR">49¢</b></button><button class="px b" aria-pressed="false"><span>Oxendine</span><b id="pB">54¢</b></button></div>
-    </aside>
+    </div>
   </div>
 </header>
 
-<div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker"></div></div>
-
-<section class="band" id="g-markets">
+<section class="band" id="g-what">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">Trending markets</p><h2 class="disp">The price is <span class="o">the chance.</span></h2><p class="lede">Every outcome trades between 1¢ and 99¢. Each winning share pays $1. A price of 61¢ means the crowd gives it a 61% chance.</p></div>
-    <div class="markets" id="mkts"></div>
+    <div class="sec-head"><p class="eyebrow">What is Fight</p><h2 class="disp">One place for <span class="o">every fight.</span></h2><p class="lede">Follow the cards you care about, make your calls, watch them land and build a record the whole community can see.</p></div>
+    <div class="what">
+      <article class="glass wcard"><div class="dots"></div><img src="img/how-bet.webp" alt=""><b>Predict</b><p>Call who wins, how it ends and in which round. Prices show the crowd's chance on every outcome.</p></article>
+      <article class="glass wcard"><div class="dots"></div><div class="wthumb" style="background-image:url(img/crew-wide.webp)"></div><b>Watch live</b><p>Stream the fight, chat with fans and call what happens in the next 30 seconds.</p></article>
+      <article class="glass wcard"><div class="dots"></div><img src="img/gem-champion-160.webp" alt=""><b>Climb the ranks</b><p>Every fight counts toward your rank. Higher ranks give you more back.</p></article>
+      <article class="glass wcard"><div class="dots"></div><div class="wthumb" style="background-image:url(img/f-jones.png),radial-gradient(60% 90% at 50% 100%,rgba(255,59,59,.35),transparent);background-size:contain,cover;background-position:center bottom"></div><b>Record book</b><p>Every fighter in one place: records, results, history and bios for the legends too.</p></article>
+    </div>
   </div>
 </section>
 
-<section class="band" style="padding-top:0">
+<section class="band" id="g-markets" style="background:var(--bg-2)">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">A real order book</p><h2 class="disp">See every bid. <span class="o">Every ask.</span></h2><p class="lede">Chart, depth and spread on every fight page. Market orders fill instantly; limit orders wait on the book at your price.</p></div>
-    <div class="browser" aria-label="Fight page example">
+    <div class="sec-head"><p class="eyebrow">Fight pages</p><h2 class="disp">Everything about <span class="o">the fight.</span></h2><p class="lede">Records, the tale of the tape, live prices and the full order book on one page. A price of 94¢ means fans give it a 94% chance, and every winning share pays $1.</p></div>
+    <div class="browser" aria-label="Fight page">
       <div class="browser-bar"><i></i><i></i><i></i><span>fightapp.com/fight/price-vs-kotaskova</span></div>
       <div class="fightpage">
         <div class="fp-left">
@@ -507,49 +560,23 @@ footer .wrap{display:flex;flex-direction:column;gap:20px}
         </div>
         <div class="fp-right">
           <div class="fp-tabs" role="tablist"><button role="tab" aria-selected="false">Chart</button><button role="tab" aria-selected="true">Order book</button></div>
-          <div class="mono" style="font-size:12px;color:var(--fg-3)">WHO WINS? · $9.8K TRADED · KOTASKOVA +4 TODAY</div>
+          <div class="mono" style="font-size:12px;color:var(--fg-3)">WHO WINS? · $9.8K TRADED</div>
           <div class="book" id="book"></div>
-          <div class="px2"><button class="px r"><span>Price</span><b>96¢</b></button><button class="px b"><span>Kotaskova</span><b>7¢</b></button></div>
+          <div class="px2"><span class="px r"><span>Price</span><b>96¢</b></span><span class="px b"><span>Kotaskova</span><b>7¢</b></span></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="band" id="g-how" style="background:var(--bg-2)">
-  <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">Try it</p><h2 class="disp">Buy. Hold. <span class="o">Sell.</span></h2><p class="lede">Pick an outcome and an amount. You see your shares and what they pay before you buy. Turn on limit orders when you want to name your price.</p></div>
-    <div class="demo">
-      <div class="glass market">
-        <div class="dots"></div>
-        <div class="duel-top"><span>LFA 247 · Phoenix · Fri 11:00 PM</span><span class="mono">$8.6K vol</span></div>
-        <div class="names" style="margin:0"><div><b>Breno</b><small>16-4-0 · BR</small></div><div><b>Torres</b><small>31-12-0 · US</small></div></div>
-        <div class="tabs" role="tablist" aria-label="Market type" id="mktTabs">
-          <button role="tab" aria-selected="true" data-m="winner">Who wins</button><button role="tab" aria-selected="false" data-m="method">Method</button><button role="tab" aria-selected="false" data-m="round">Round</button><button role="tab" aria-selected="false" data-m="distance">Distance</button>
-        </div>
-        <div class="opts" id="opts"></div>
-      </div>
-      <aside class="glass slip" aria-label="Order ticket"><div class="slip-head">Order ticket <span id="slipCount">Market</span></div><div id="slipBody"></div></aside>
+    <div class="trio">
+      <div><b>Every way to call it</b><p>Who wins, method, round and whether it goes the distance.</p></div>
+      <div><b>Change your mind</b><p>Sell any time before the final bell. You're never locked in.</p></div>
+      <div><b>Name your price</b><p>Use limit orders to wait on the book at the price you want.</p></div>
     </div>
   </div>
 </section>
 
-<section class="band" id="g-events">
+<section class="band" id="g-live">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">Every league, every night</p><h2 class="disp">What's on <span class="o">this weekend.</span></h2><p class="lede">MMA, boxing, bare knuckle, Muay Thai, kickboxing, grappling, wrestling and slap. Every fight night in order, what is on now comes first.</p></div>
-    <div class="events">
-      <a class="ev live" href="#g-markets"><div class="ev-date"><small>● LIVE</small><b>20</b><span>FRI 10:00 PM</span></div><div class="ev-name"><small>BKFC · MYRTLE BEACH, SC</small><b>BKFC Fight Night: Myrtle Beach</b></div><div class="ev-stat"><b>$34.4K</b>3 fights</div><span class="ev-go">→</span></a>
-      <a class="ev" href="#g-markets"><div class="ev-date"><small>NOV</small><b>20</b><span>FRI 10:00 PM</span></div><div class="ev-name"><small>BOXING · INDIO, CA</small><b>Jones vs. Pettus</b></div><div class="ev-stat"><b>$15.5K</b>2 fights</div><span class="ev-go">→</span></a>
-      <a class="ev" href="#g-markets"><div class="ev-date"><small>NOV</small><b>20</b><span>FRI 11:00 PM</span></div><div class="ev-name"><small>LFA · PHOENIX, AZ</small><b>LFA 247: Breno vs. Torres</b></div><div class="ev-stat"><b>$15.0K</b>3 fights</div><span class="ev-go">→</span></a>
-      <a class="ev" href="#g-markets"><div class="ev-date"><small>NOV</small><b>21</b><span>SAT 12:00 PM</span></div><div class="ev-name"><small>MMA · DOHA</small><b>Fight Night: Procházka vs. Stirling</b></div><div class="ev-stat"><b>$8.7K</b>3 fights</div><span class="ev-go">→</span></a>
-      <a class="ev" href="#g-markets"><div class="ev-date"><small>NOV</small><b>21</b><span>SAT 2:00 PM</span></div><div class="ev-name"><small>KSW · POLAND</small><b>KSW 123: Bartosiński vs. Łopaczyk</b></div><div class="ev-stat"><b>6</b>markets</div><span class="ev-go">→</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="g-live" style="background:var(--bg-2)">
-  <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">Watch &amp; trade live</p><h2 class="disp">A new market <span class="o">every 30 seconds.</span></h2><p class="lede">Stream the fight, chat with the crowd and call what happens next before the clock runs out.</p></div>
+    <div class="sec-head"><p class="eyebrow">Watch &amp; call it live</p><h2 class="disp">Never just <span class="o">watch.</span></h2><p class="lede">Stream the fight, talk with the crowd and call what happens next. A new 30-second market opens all fight long.</p></div>
     <div class="glass stream">
       <div class="chat"><div class="pane-head"><span>Live chat</span><span class="mono">12.4K watching</span></div><div class="chat-list" id="chat"></div></div>
       <div class="player"><div class="p-top"><span class="tag"><span class="dot"></span>LIVE</span><span class="mono">R2 · <span id="pClock">1:52</span></span></div><div class="p-bot"><b>Richardson <span style="color:var(--fg-3)">vs</span> Oxendine</b><span>BKFC main event</span></div></div>
@@ -558,7 +585,7 @@ footer .wrap{display:flex;flex-direction:column;gap:20px}
         <div class="ring-wrap"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/><circle id="ringArc" cx="60" cy="60" r="52" fill="none" stroke="#ff4a26" stroke-width="8" stroke-linecap="round" stroke-dasharray="326.7" transform="rotate(-90 60 60)"/></svg><b id="mSecs">30</b></div>
         <p class="micro-q" id="mQ">Knockdown in the next 30s?</p>
         <div class="wrow"><button class="yn y" id="mYes"><span>Yes</span><b id="mYesP">14¢</b></button><button class="yn n" id="mNo"><span>No</span><b id="mNoP">87¢</b></button></div>
-        <p class="fee" id="mMsg" aria-live="polite">Tap to buy $5 of shares</p>
+        <p class="fee" id="mMsg" aria-live="polite">A new question every 30 seconds</p>
       </div>
     </div>
   </div>
@@ -566,10 +593,10 @@ footer .wrap{display:flex;flex-direction:column;gap:20px}
 
 <section class="band rewards" id="g-rewards">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">Rewards</p><h2 class="disp">Every dollar is <span class="o">XP.</span></h2><p class="lede">$1 traded is 1 XP, and trophies add more. Climb 8 ranks and 40 levels. The higher your rank, the more of your fees come back every week.</p></div>
+    <div class="sec-head"><p class="eyebrow">Rewards</p><h2 class="disp">Your record <span class="o">pays off.</span></h2><p class="lede">Every dollar you trade is 1 XP, and trophies add more. Climb 8 ranks and 40 levels. The higher your rank, the more of your fees come back every week.</p></div>
     <div class="ladder" id="ladder"></div>
     <div class="how3">
-      <div class="how"><img src="img/how-bet.webp" alt=""><div><b>Trade</b><p>Every dollar you trade is a point of XP.</p></div></div>
+      <div class="how"><img src="img/how-bet.webp" alt=""><div><b>Play</b><p>Every dollar you trade is a point of XP.</p></div></div>
       <div class="how"><img src="img/how-rank.webp" alt=""><div><b>Rank up</b><p>Each rank gives back more of your fees, up to 25%.</p></div></div>
       <div class="how"><img src="img/how-invite.webp" alt=""><div><b>Invite</b><p>Earn a share of the fees your friends pay.</p></div></div>
     </div>
@@ -578,24 +605,37 @@ footer .wrap{display:flex;flex-direction:column;gap:20px}
 
 <section class="band" style="padding-bottom:150px">
   <div class="wrap">
-    <div class="sec-head center"><p class="eyebrow">Trophy room</p><h2 class="disp">Earn your <span class="o">stripes.</span></h2><p class="lede">Call the upset, back the underdog, show up every fight night. Milestones unlock trophies for your profile.</p></div>
+    <div class="sec-head center"><p class="eyebrow">Trophy room</p><h2 class="disp">Earn your <span class="o">stripes.</span></h2><p class="lede">Milestones unlock trophies for your profile, so everyone can see the calls you made.</p></div>
     <div class="trophies">
       <div class="trophy"><img src="img/tr-first-blood.png" alt="First Blood"></div><div class="trophy"><img src="img/tr-underdog-hunter.png" alt="Underdog Hunter"></div><div class="trophy"><img src="img/tr-verified-fan.png" alt="Verified Fan"></div><div class="trophy"><img src="img/tr-champion.png" alt="Champion"></div><div class="trophy"><img src="img/tr-fight-night.png" alt="Fight Night"></div><div class="trophy"><img src="img/tr-loyal-fan.png" alt="Loyal Fan"></div><div class="trophy"><img src="img/tr-underdog-silver.png" alt="Underdog Hunter, silver"></div>
     </div>
   </div>
 </section>
 
+<section class="band" id="g-events" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Every league, every night</p><h2 class="disp">Your sport <span class="o">is here.</span></h2><p class="lede">From the biggest promotions to regional cards, every fight night in one schedule.</p></div>
+    <div class="sports"><span>MMA</span><span>Boxing</span><span>Bare knuckle</span><span>Muay Thai</span><span>Kickboxing</span><span>Grappling</span><span>Wrestling</span><span>Slap</span></div>
+    <div class="events">
+      <div class="ev live"><div class="ev-date"><small>● LIVE</small><b>20</b><span>FRI 10:00 PM</span></div><div class="ev-name"><small>BKFC · MYRTLE BEACH, SC</small><b>BKFC Fight Night: Myrtle Beach</b></div><div class="ev-stat"><b>3</b>fights</div></div>
+      <div class="ev"><div class="ev-date"><small>NOV</small><b>20</b><span>FRI 10:00 PM</span></div><div class="ev-name"><small>BOXING · INDIO, CA</small><b>Jones vs. Pettus</b></div><div class="ev-stat"><b>2</b>fights</div></div>
+      <div class="ev"><div class="ev-date"><small>NOV</small><b>20</b><span>FRI 11:00 PM</span></div><div class="ev-name"><small>LFA · PHOENIX, AZ</small><b>LFA 247: Breno vs. Torres</b></div><div class="ev-stat"><b>3</b>fights</div></div>
+      <div class="ev"><div class="ev-date"><small>NOV</small><b>21</b><span>SAT 12:00 PM</span></div><div class="ev-name"><small>MMA · DOHA</small><b>Fight Night: Procházka vs. Stirling</b></div><div class="ev-stat"><b>3</b>fights</div></div>
+    </div>
+  </div>
+</section>
+
 <section class="final" id="g-join">
   <div class="wrap">
-    <p class="eyebrow">Early access</p>
-    <h2 class="disp it">Fight night<br><span class="o">never ends.</span></h2>
-    <form class="waitlist" data-wl novalidate><label for="gEmail" style="position:absolute;left:-9999px">Email</label><input id="gEmail" type="email" placeholder="you@email.com" autocomplete="email"><button class="btn btn-primary" type="submit">Get early access</button></form>
-    <p class="wl-msg" aria-live="polite"></p>
+    <p class="eyebrow">Join Fight</p>
+    <h2 class="disp it">Your corner<br><span class="o">is waiting.</span></h2>
+    <p class="lede">Create your free account in a minute. Already have one? Sign in and pick up where you left off.</p>
+    <div class="cta-row"><a class="btn btn-primary" href="#g-join">Create account</a><a class="btn btn-dark" href="#g-join">Sign in</a></div>
   </div>
 </section>
 <footer><div class="wrap">
-  <div class="foot-top"><a class="brand" href="#global"><img src="img/mark.png" alt="">FIGHT</a><div class="foot-links"><a href="#g-markets">Markets</a><a href="#g-events">Events</a><a href="#g-rewards">Rewards</a><a href="#g-join">Rules</a><a href="#g-join">Terms</a><a href="#g-join">Privacy</a></div></div>
-  <p class="legal">Markets are not available in every region. Prices, volumes and order book levels on this page are a snapshot of the preview build on Nov 20, 2026. [Regional and legal copy pending review.]</p>
+  <div class="foot-top"><a class="brand" href="#global"><img src="img/mark.png" alt="">FIGHT</a><div class="foot-links"><a href="#g-what">What is Fight</a><a href="#g-rewards">Rewards</a><a href="#g-join">Rules</a><a href="#g-join">Terms</a><a href="#g-join">Privacy</a></div></div>
+  <p class="legal">Markets are not available in every region. Prices and volumes shown are examples from Nov 20, 2026. [Regional and legal copy pending review.]</p>
 </div></footer>
 </div>
 
@@ -724,64 +764,18 @@ addEventListener('hashchange',route);route();
     x.beginPath();x.arc(p.x*W,p.y*H,p.r*devicePixelRatio,0,7);x.fillStyle='rgba(255,'+(90+Math.round(Math.sin(p.a)*40))+',38,'+(.35+.35*Math.sin(p.a))+')';x.fill()}requestAnimationFrame(f)})();
 })();
 
-/* ---------- global hero prices (snapshot 49¢ / 54¢) ---------- */
-let gR=49;
-function gTick(){const o=gR;gR=Math.min(58,Math.max(42,gR+Math.round((Math.random()-.5)*3)));if(gR===o)return;
-  const pr=$('#pR'),pb=$('#pB');pr.textContent=gR+'¢';pb.textContent=(103-gR)+'¢';pr.className=gR>o?'up':'down';pb.className=gR>o?'down':'up';setTimeout(()=>{pr.className='';pb.className=''},700);
-  const c=Math.round(gR/(gR+103-gR)*100);$('#cbR').style.width=c+'%';$('#cbB').style.width=(100-c)+'%';$('#cR').textContent=c+'%';$('#cB').textContent=(100-c)+'%';}
-let startS=4*3600+2*60;function gClock(){startS=Math.max(0,startS-60);const h=Math.floor(startS/3600),m=Math.floor(startS%3600/60);$('#gStart').textContent=h+'H '+String(m).padStart(2,'0')+'M';}
-
-/* ---------- ticker (real preview markets) ---------- */
-const TK=[['Who wins','Richardson','49¢','Oxendine','54¢','+3'],['Who wins','Jett','58¢','Hinton','45¢','+10'],['Who wins','Gilheaney','7¢','Palmetta','98¢','+69'],['Who wins','Edwards','82¢','McGregor','21¢','+0'],['Goes the distance','Price v Kotaskova · Yes','61¢','No','42¢','+0'],['Who wins','Piercey','46¢','Romo','57¢','-2'],['Who wins','Jones','95¢','Pettus','8¢','+1'],['Who wins','Breno','55¢','Torres','48¢','+4'],['Who wins','Fundora','89¢','Zapotoczna','14¢','-1']];
-const tkRow=TK.map(t=>'<span class="tk"><span class="q">'+t[0]+'</span>'+t[1]+' <b>'+t[2]+'</b> · '+t[3]+' <b>'+t[4]+'</b><span class="chg" style="color:'+(t[5][0]=='-'?'#ff8a8a':'var(--green)')+'">'+t[5]+'¢</span></span>').join('');
-$('#ticker').innerHTML=tkRow+tkRow;
+/* ---------- US ticker ---------- */
 const UTK=[['UFC','Main event','Sat'],['PFL','Playoffs','Fri'],['Boxing','Title fight','Sat'],['DWCS','Contender series','Tue'],['UFC','Fight Night','Sat']];
 const uRow=UTK.map(t=>'<span class="tk"><b style="font-family:var(--f-disp)">'+t[0]+'</b>'+t[1]+'<span class="q">'+t[2]+'</span></span>').join('');
 $('#usTicker').innerHTML=uRow+uRow+uRow;
 
-/* ---------- trending market cards ---------- */
-const MK=[['Who wins?','Gilheaney vs Palmetta','Gilheaney',7,'Palmetta',98,'Palmetta +69',[30,34,40,52,61,70,78,86,92,98]],['Who wins?','Jett vs Hinton','Jett',58,'Hinton',45,'Jett +10',[48,50,47,52,55,53,56,57,58,58]],['Who wins?','Edwards vs McGregor','Edwards',82,'McGregor',21,'Edwards +0',[80,82,81,83,82,80,82,83,82,82]],['Goes the distance?','Price vs Kotaskova','Yes',61,'No',42,'Yes +0',[58,60,62,61,59,60,62,61,61,61]],['Who wins?','Piercey vs Romo','Piercey',46,'Romo',57,'Romo +2',[50,49,48,47,48,46,45,46,47,46]],['Who wins?','Price vs Kotaskova','Price',96,'Kotaskova',7,'Price +0',[93,94,95,94,95,96,96,95,96,96]]];
-$('#mkts').innerHTML=MK.map(m=>{const pts=m[7],X=i=>i*300/(pts.length-1),Y=v=>60-v*0.56;const d=pts.map((v,i)=>(i?'L':'M')+X(i)+' '+Y(v).toFixed(1)).join(' ');
-  return '<article class="glass mkt"><div class="dots"></div><div class="mkt-q"><span>'+m[0]+'</span><span>'+m[6]+'</span></div><h3>'+m[1]+'</h3><svg viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true"><path d="'+d+' L300 64 L0 64Z" fill="rgba(255,74,38,.12)"/><path d="'+d+'" fill="none" stroke="#ff4a26" stroke-width="2"/></svg><div class="px2"><button class="px r"><span>'+m[2]+'</span><b>'+m[3]+'¢</b></button><button class="px b"><span>'+m[4]+'</span><b>'+m[5]+'¢</b></button></div></article>'}).join('');
-
-/* ---------- order book (real snapshot) ---------- */
+/* ---------- order book on the fight-page shot (Nov 20 snapshot) ---------- */
 const ASK=[[99,79,352],[98,118,272],[97,116,155],[96,38,38]],BID=[[93,37,37],[92,110,148],[91,109,257],[90,72,329]];
 const row=(c,l)=>'<div class="lvl '+c+'"><i style="width:'+Math.round(l[2]/352*100)+'%"></i><span>'+l[0].toFixed(1)+'¢</span><span>$'+l[1]+'</span><span>$'+l[2]+'</span></div>';
 $('#book').innerHTML='<div class="hd"><span>PRICE</span><span style="text-align:right">AMOUNT</span><span style="text-align:right">TOTAL</span></div>'+ASK.map(l=>row('ask',l)).join('')+'<div class="spread"><span>LAST <b>94¢</b></span><span>SPREAD <b>3.0¢</b></span></div>'+BID.map(l=>row('bid',l)).join('');
-(function(){const n=40,r=[],b=[];let v=88;for(let i=0;i<n;i++){v=Math.min(97,Math.max(84,v+(Math.random()-.4)*2.2));r.push(v);b.push(100-v)}r[n-1]=94;b[n-1]=6;
+(function(){const n=40,r=[],b=[];let v=88;for(let i=0;i<n;i++){v=Math.min(97,Math.max(84,v+(Math.sin(i*1.7)+Math.cos(i*.6))*.9+.25));r.push(v);b.push(100-v)}r[n-1]=94;b[n-1]=6;
   const X=i=>i*600/(n-1),Y=p=>220-p*2.2;const d=a=>a.map((p,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(p).toFixed(1)).join(' ');
   $('#bigR').setAttribute('d',d(r));$('#bigA').setAttribute('d',d(r)+' L600 220 L0 220Z');$('#bigB').setAttribute('d',d(b));})();
-
-/* ---------- order ticket demo (Breno vs Torres, LFA 247) ---------- */
-const yn=(label,sub,c)=>({label,sub,btns:[['Yes',c,'y'],['No',101-c,'n']]});
-const M={winner:[{label:'',btns:[['Breno',55,'r'],['Torres',48,'b']]}],method:[yn('KO / TKO','Any fighter',38),yn('Submission','Any fighter',27),yn('Decision','Judges’ result',36)],round:[yn('Round 1','Ends in R1',22),yn('Round 2','Ends in R2',17),yn('Round 3','Ends in R3',12)],distance:[yn('Goes the distance','All 3 rounds',36)]};
-let mk='winner',sel=[0,0],amt=25,side='buy',limit=false,lim=null,lsh=50,pos=null;
-const cur=()=>{const r=M[mk][sel[0]],b=r.btns[sel[1]];return{row:r,btn:b,c:b[1],name:r.label?r.label+' · '+b[0]:b[0]+' wins'}};
-function renderOpts(){$('#opts').innerHTML=M[mk].map((r,i)=>{const bs=r.btns.map((b,j)=>'<button class="yn '+b[2]+'" aria-pressed="'+(i===sel[0]&&j===sel[1])+'" data-i="'+i+'" data-j="'+j+'"><span>'+b[0]+'</span><b>'+b[1]+'¢</b></button>').join('');return r.label?'<div class="orow"><span class="lbl">'+r.label+'<small>'+r.sub+'</small></span>'+bs+'</div>':'<div class="wrow">'+bs+'</div>'}).join('');
-  $$('#opts .yn').forEach(b=>b.onclick=()=>{sel=[+b.dataset.i,+b.dataset.j];lim=null;side='buy';renderOpts();renderSlip()})}
-const fill=(c,a)=>{const avg=Math.min(99,c+a/50);return{avg,shares:Math.floor(a/(avg/100))}};
-function renderSlip(){const s=cur();if(lim===null)lim=Math.max(1,s.c-2);
-  let h='<div style="display:flex;flex-direction:column;gap:16px"><div class="toggle">'+[['buy','Buy'],['sell','Sell']].map(x=>'<button data-bs="'+x[0]+'" data-v="'+x[0]+'" aria-pressed="'+(side===x[0])+'">'+x[1]+'</button>').join('')+'</div>';
-  h+='<div class="leg"><div class="dots" style="-webkit-mask-image:linear-gradient(270deg,#000,transparent 60%);mask-image:linear-gradient(270deg,#000,transparent 60%)"></div><div><small>Breno vs Torres</small><strong>'+s.name+'</strong></div><span class="x">'+s.c+'¢</span></div>';
-  if(side==='sell'&&!pos){h+='<p class="fee" style="font-size:14px">You don’t hold shares in this outcome yet. Buy first, then sell any time before it settles.</p>'}
-  else if(side==='sell'){const v=pos.shares*(pos.c+2)/100;h+='<div class="kv"><div>Shares you hold<b>'+pos.shares+'</b></div><div>Best bid<b>'+(pos.c+2)+'¢</b></div><div>You receive<b>'+fmt(v)+'</b></div></div><button class="btn btn-primary" id="place">Sell '+pos.shares+' shares · '+fmt(v)+'</button>'}
-  else{h+='<div class="sw-row"><span>Limit order</span><button class="sw" role="switch" aria-checked="'+limit+'" id="limSw" aria-label="Limit order"></button></div>';
-    if(!limit){const f=fill(s.c,amt);h+='<span class="lab">Amount</span><div class="amt-row">'+[10,25,50,100].map(a=>'<button class="chip" aria-pressed="'+(a===amt)+'" data-a="'+a+'">$'+a+'</button>').join('')+'</div><div class="kv"><div>Average price<b>'+f.avg.toFixed(1)+'¢</b></div><div>Shares<b>'+f.shares+'</b></div></div><div class="payout"><div><small>To win</small><span class="fee">$1 per share if it hits</span></div><strong>'+fmt(f.shares)+'</strong></div><button class="btn btn-primary" id="place">Buy '+s.btn[0]+' · '+fmt(amt)+'</button>'}
-    else{h+='<span class="lab">Limit price</span><div class="stepper"><button data-l="-1" aria-label="Lower price">−</button><output>'+lim+'¢</output><button data-l="1" aria-label="Raise price">+</button></div><span class="lab">Shares</span><div class="amt-row">'+[25,50,100,250].map(a=>'<button class="chip" aria-pressed="'+(a===lsh)+'" data-s="'+a+'">'+a+'</button>').join('')+'</div><div class="kv"><div>Cost if filled<b>'+fmt(lsh*lim/100)+'</b></div><div>To win<b>'+fmt(lsh)+'</b></div></div><p class="fee">Waits on the book until someone sells at '+lim+'¢ or less. Cancel any time.</p><button class="btn btn-primary" id="place">Place limit · '+lsh+' @ '+lim+'¢</button>'}}
-  h+='</div>';$('#slipCount').textContent=side==='sell'?'Sell':(limit?'Limit':'Market');$('#slipBody').innerHTML=h;
-  $$('#slipBody [data-bs]').forEach(b=>b.onclick=()=>{side=b.dataset.bs;renderSlip()});
-  $$('#slipBody [data-a]').forEach(b=>b.onclick=()=>{amt=+b.dataset.a;renderSlip()});
-  $$('#slipBody [data-s]').forEach(b=>b.onclick=()=>{lsh=+b.dataset.s;renderSlip()});
-  $$('#slipBody [data-l]').forEach(b=>b.onclick=()=>{lim=Math.min(99,Math.max(1,lim+ +b.dataset.l));renderSlip()});
-  const sw=$('#limSw');if(sw)sw.onclick=()=>{limit=!limit;renderSlip()};
-  const pl=$('#place');if(pl)pl.onclick=()=>{
-    if(side==='sell'){const v=pos.shares*(pos.c+2)/100,p=v-pos.cost;done('Shares sold',pos.shares+' shares @ '+(pos.c+2)+'¢','Cashed out <b style="color:var(--green)">'+fmt(v)+'</b> ('+(p>=0?'+':'−')+fmt(Math.abs(p))+')');pos=null;return}
-    if(limit){done('Order on the book','Buy '+lsh+' shares · '+s.name+' @ '+lim+'¢','Fills when the price reaches '+lim+'¢');return}
-    const f=fill(s.c,amt);pos={shares:f.shares,c:s.c,cost:amt};done('Order filled',f.shares+' shares · '+s.name+' @ '+f.avg.toFixed(1)+'¢','Pays <b style="color:var(--green)">'+fmt(f.shares)+'</b> if it hits. Sell any time.')}}
-function done(t,a,b){$('#slipCount').textContent='Done';$('#slipBody').innerHTML='<div class="done"><div class="ring"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#39c95f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><h3>'+t+'</h3><p>'+a+'</p><p>'+b+'</p></div>'+(pos?'<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn btn-dark" id="again">Keep trading</button><button class="btn btn-dark" id="cash" style="color:#ff8a8a">Cash out</button></div>':'<button class="btn btn-dark" id="again" style="width:100%">Keep trading</button>');
-  $('#again').onclick=()=>{side='buy';renderSlip()};const c=$('#cash');if(c)c.onclick=()=>{side='sell';renderSlip()}}
-$$('#mktTabs button').forEach(b=>b.onclick=()=>{mk=b.dataset.m;sel=[0,0];lim=null;side='buy';$$('#mktTabs button').forEach(x=>x.setAttribute('aria-selected',x===b));renderOpts();renderSlip()});
-renderOpts();renderSlip();
 
 /* ---------- livestream ---------- */
 const QS=[['Knockdown in the next 30s?',14],['Richardson lands 5+ punches?',52],['Clinch broken by the ref?',61],['Oxendine bleeding by the bell?',23]];
@@ -790,7 +784,7 @@ const CH=[['cageside','#ff4a26','Richardson is loading up the right hand'],['ana
 function chat(trade){const u=CH[Math.floor(Math.random()*CH.length)],el=document.createElement('div');if(trade){el.className='msg trade';el.textContent='@'+u[0]+' bought '+(Math.random()<.5?'Yes':'No')+' · $'+[5,10,20,50][Math.floor(Math.random()*4)]}else{el.className='msg';el.innerHTML='<b style="color:'+u[1]+'">'+u[0]+'</b>'+u[2]}const box=$('#chat');box.append(el);while(box.children.length>9)box.firstChild.remove()}
 function mRender(){$('#mSecs').textContent=ms;$('#ringArc').style.strokeDashoffset=(326.7*(1-ms/30)).toFixed(1);$('#mYesP').textContent=yes+'¢';$('#mNoP').textContent=(101-yes)+'¢';$('#mVol').textContent='$'+mVol.toLocaleString('en-US');pc=pc>0?pc-1:179;$('#pClock').textContent=Math.floor(pc/60)+':'+String(pc%60).padStart(2,'0')}
 function mTick(){ms--;if(ms<=0){qi=(qi+1)%QS.length;ms=30;yes=QS[qi][1];$('#mQ').textContent=QS[qi][0];$('#mMsg').textContent='New market. Tap to buy $5 of shares';['#mYes','#mNo'].forEach(s=>$(s).setAttribute('aria-pressed','false'))}else{yes=Math.min(95,Math.max(3,yes+Math.round((Math.random()-.5)*4)));mVol+=Math.round(Math.random()*60)}mRender()}
-['#mYes','#mNo'].forEach((s,i)=>$(s).onclick=()=>{['#mYes','#mNo'].forEach(x=>$(x).setAttribute('aria-pressed',x===s));const c=i?101-yes:yes;$('#mMsg').textContent='Bought '+Math.floor(500/c)+' '+(i?'No':'Yes')+' shares @ '+c+'¢. Settles in '+ms+'s.';chat(true)});
+["#mYes","#mNo"].forEach(s=>$(s).onclick=()=>{$("#mMsg").textContent="Sign in to make your call."});
 for(let i=0;i<6;i++)chat(i===3);mRender();
 
 /* ---------- rank ladder (web /rewards rules) ---------- */
@@ -817,7 +811,7 @@ $$('[data-wl]').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();co
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){m.className='wl-msg err';m.textContent='Enter a valid email, like name@email.com.';return}
   m.className='wl-msg';m.textContent='You’re on the list. We’ll email you before launch.';i.value=''}));
 
-if(!reduce){setInterval(gTick,2400);setInterval(gClock,60000);setInterval(mTick,1000);setInterval(()=>chat(Math.random()<.3),1700)}
+if(!reduce){setInterval(mTick,1000);setInterval(()=>chat(Math.random()<.3),1700)}
 })();
 </script>
 
