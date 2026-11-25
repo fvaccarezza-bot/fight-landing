@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Win $2,000 + UFC Fight Night Tickets · Fight App Giveaway</title>
+<meta name="description" content="Win $2,000 and two tickets to Mike Perry's return or Bo Nickal's UFC Fight Night. Free to enter.">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@500;600;700&display=swap">
+<style>
+/*BASE: shared tokens, type, buttons, nav, footer, sparks (copied from index.html) */
+/* Type stack = the web team's preview: "display" = ChakraPetchCustom 900 (+ italic), Chakra Petch for UI, Geist for text, Geist Mono for prices. */
+@font-face{font-family:'Fight Display';src:url(fonts/ChakraPetchCustom_900.woff2) format('woff2');font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:'Fight Display';src:url(fonts/ChakraPetchCustom_900i.woff2) format('woff2');font-weight:900;font-style:italic;font-display:swap}
+/* Layout: full-bleed arena bands, 1240 column. One loud moment per page (hero), quiet glass everywhere else. */
+:root{
+  color-scheme:dark;
+  --bg:#070707; --bg-2:#0d0d0d; --card-a:#171717; --card-b:#0e0e0e;
+  --fg:#fff; --fg-2:rgba(255,255,255,.64); --fg-3:rgba(255,255,255,.4); --line:rgba(255,255,255,.07);
+  --orange:#ff4a26; --orange-a:#ff3000; --orange-b:#ff2000;
+  --red:#ff3b3b; --blue:#3d7bff; --green:#39c95f;
+  --f-disp:'Fight Display','Chakra Petch',Impact,system-ui,sans-serif;
+  --f-ui:'Chakra Petch',system-ui,sans-serif;
+  --f-body:'Geist',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+/* Lenis drives the scroll; native smooth would fight it */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:80;background:var(--bg)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:6px}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.disp{font-family:var(--f-disp);font-weight:900;text-transform:uppercase;line-height:.94;letter-spacing:-.01em;text-wrap:balance;margin:0;text-shadow:0 1px 18px rgba(0,0,0,.55)}
+/* "lit" orange, copied from fightapp.com/giveaway: top-lit gradient fill + orange glow + white top hairline (SVG #lit) */
+.disp .o,.g-hero h1 .vs{color:var(--orange);-webkit-text-fill-color:transparent;background:linear-gradient(105deg,rgba(255,255,255,0) 42%,rgba(255,236,224,.85) 50%,rgba(255,255,255,0) 58%) no-repeat 100% 0/250% 100%,linear-gradient(#ff6a40 4%,#ff3000 58%);animation:litshine 18s cubic-bezier(.45,0,.25,1) 1.2s infinite;-webkit-background-clip:text;background-clip:text;-webkit-box-decoration-break:clone;box-decoration-break:clone;filter:url(#lit);text-shadow:none;margin-inline:-.06em -.1em;padding-inline:.06em .1em}
+.it{font-style:italic}
+.ui{font-family:var(--f-ui);text-transform:uppercase;letter-spacing:.08em}
+.eyebrow{font-family:var(--f-ui);font-weight:600;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin:0}
+.lede{color:var(--fg-2);font-size:18px;max-width:56ch;margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.o{color:var(--orange)}
+/* buttons = app Button / Canonical (Figma 893:3339): pill, Chakra Petch SemiBold 14 / .6px, Primary #ff4a26, Secondary #0f0f0f; corners kept from the site (12px / 10px small) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 24px;border-radius:12px;font-family:var(--f-ui);font-weight:600;font-size:14px;line-height:18px;letter-spacing:.6px;text-transform:uppercase;color:#fff;transition:filter .18s,box-shadow .18s,transform .18s;white-space:nowrap}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.98)}
+/* magic: cursor spotlight + light swipe on hover; the primary also glints on its own every few seconds */
+.btn,.store{position:relative;isolation:isolate;overflow:hidden}
+.btn::before,.store::before{content:"";position:absolute;z-index:-1;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(90px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.26),rgba(255,255,255,0) 70%);opacity:0;transition:opacity .25s ease}
+.store::before{background:radial-gradient(110px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.16),rgba(255,255,255,0) 70%)}
+.store:not(.ghost)::before{background:radial-gradient(110px circle at var(--mx,50%) var(--my,50%),rgba(255,140,100,.22),rgba(255,140,100,0) 70%)}
+.btn:hover::before,.store:hover::before{opacity:1}
+.btn::after,.store::after{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:0;width:45%;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.08) 30%,rgba(255,255,255,.42) 50%,rgba(255,255,255,.08) 70%,rgba(255,255,255,0));transform:translateX(-120%) skewX(-18deg)}
+.store:not(.ghost)::after{background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,180,150,.25) 50%,rgba(255,255,255,0))}
+.btn:hover::after,.store:hover::after{animation:btnswipe .75s cubic-bezier(.4,0,.2,1)}
+.btn-primary:not(:hover)::after{animation:btnglint 6s cubic-bezier(.4,0,.2,1) 2s infinite}
+@keyframes btnswipe{from{transform:translateX(-120%) skewX(-18deg)}to{transform:translateX(320%) skewX(-18deg)}}
+@keyframes btnglint{0%{transform:translateX(-120%) skewX(-18deg)}14%,100%{transform:translateX(320%) skewX(-18deg)}}
+@media (prefers-reduced-motion:reduce){.btn::after,.store::after{animation:none!important}}
+.btn-primary{background:radial-gradient(60% 65% at 50% 100%,rgba(255,255,255,.12),rgba(255,255,255,0)),linear-gradient(0deg,rgba(255,255,255,0) 41.25%,rgba(255,255,255,.3) 128.75%),linear-gradient(180deg,#ff4a26,#e3391b);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 0 0 1px rgba(0,0,0,.2),0 3px 20px rgba(255,74,38,.4),0 1px 4px rgba(0,0,0,.5)}
+.btn-primary:active{box-shadow:inset 0 0 1px 1.5px rgba(255,255,255,.04),inset 0 -1px 1px rgba(0,0,0,.1),inset -1px 0 1px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.2)}
+.btn-dark{background:radial-gradient(60% 65% at 50% 100%,rgba(255,255,255,.1),rgba(255,255,255,0)),linear-gradient(0deg,rgba(255,255,255,0) 41.25%,rgba(255,255,255,.12) 128.75%),linear-gradient(180deg,#0f0f0f,#0a0a0a);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 0 1px rgba(0,0,0,.2),0 1px 1px rgba(0,0,0,.4)}
+.btn-dark:active{box-shadow:inset 0 0 1px 1.5px rgba(255,255,255,.04),inset 0 1px 2px 1px rgba(0,0,0,.2),0 0 0 1px rgba(0,0,0,.2)}
+.btn-sm{height:40px;padding:0 18px;font-size:13px;letter-spacing:.5px;border-radius:10px}
+.glass{background:linear-gradient(180deg,var(--card-a),var(--card-b));box-shadow:inset 1px 1px 0 rgba(255,255,255,.05),inset -1px -1px 0 rgba(0,0,0,.1),0 24px 70px rgba(0,0,0,.5);border-radius:20px;position:relative;overflow:hidden}
+.dots{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.4px);background-size:6px 6px;-webkit-mask-image:linear-gradient(90deg,#000,transparent 70%);mask-image:linear-gradient(90deg,#000,transparent 70%)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(255,59,59,.7);animation:ping 1.6s infinite;flex:none}
+@keyframes ping{70%{box-shadow:0 0 0 9px rgba(255,59,59,0)}100%{box-shadow:0 0 0 0 rgba(255,59,59,0)}}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+@keyframes float{50%{transform:translateY(-12px)}}
+section.band{padding-block:120px;position:relative}
+#u-parlays{padding-bottom:clamp(56px,6vw,84px)}
+#u-profile{padding-top:clamp(56px,6vw,84px)}
+.sec-head{display:flex;flex-direction:column;gap:16px;margin-bottom:56px;max-width:780px}
+.sec-head h2{font-size:clamp(40px,6vw,80px)}
+.center{margin-inline:auto;text-align:center;align-items:center}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(7,7,7,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:30px;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--f-disp);font-weight:900;font-size:20px;letter-spacing:.04em}
+.brand img{height:28px;width:26px;object-fit:contain}
+.nav-links{display:flex;gap:26px;font-family:var(--f-ui);font-weight:500;font-size:14px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-2)}
+.nav-links a:hover{color:var(--fg)}
+.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.region{font-family:var(--f-ui);font-size:12px;letter-spacing:.12em;color:var(--fg-3);padding:6px 10px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--line)}
+
+.store::before{background:radial-gradient(110px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.16),rgba(255,255,255,0) 70%)}
+.store:not(.ghost)::before{background:radial-gradient(110px circle at var(--mx,50%) var(--my,50%),rgba(255,140,100,.22),rgba(255,140,100,0) 70%)}
+.store:not(.ghost)::after{background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,180,150,.25) 50%,rgba(255,255,255,0))}
+.g-copy{display:flex;flex-direction:column;gap:24px;min-width:0;animation:rise .9s cubic-bezier(.22,1,.36,1) both}
+.chip-live{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;height:32px;padding:0 14px;border-radius:99px;background:rgba(255,59,59,.12);box-shadow:inset 0 0 0 1px rgba(255,59,59,.35);font-family:var(--f-ui);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#ffb0b0}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.waitlist{display:flex;gap:10px;flex-wrap:wrap;max-width:540px}
+.waitlist input{flex:1;min-width:0;height:52px;padding:0 16px;border-radius:12px;border:0;background:rgba(20,20,20,.85);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);color:var(--fg);font:inherit;font-size:15px}
+.waitlist input:focus{outline:none;box-shadow:inset 0 0 0 1.5px var(--orange)}
+.wl-msg{font-size:14px;color:var(--green);margin:0;min-height:22px}
+.wl-msg.err{color:#ff8a8a}
+footer{background:#080808;padding-block:48px 110px;color:var(--fg-3);font-size:13px}
+footer .wrap{display:flex;flex-direction:column;gap:20px}
+footer:has(.foot-mega){padding-bottom:0;overflow:hidden}
+.foot-top{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--f-ui);letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+.foot-links a:hover{color:var(--fg)}
+.legal{max-width:92ch;margin:0}
+.foot-top{padding-block:28px 22px;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.05)}
+footer .brand{color:#fff}
+.foot-links a{color:rgba(255,255,255,.55);transition:color .2s}
+.sparks{pointer-events:none;position:absolute;inset:0;overflow:clip;container-type:size;z-index:0}
+.sparks>i{position:absolute;border-radius:50%;background:#ffb38a;opacity:0;box-shadow:0 0 6px 2px rgba(255,74,38,.95),0 0 18px 4px rgba(255,74,38,.45);animation:spark linear infinite;will-change:translate,opacity}
+@keyframes spark{0%{opacity:0;translate:0}10%{opacity:var(--o)}80%{opacity:var(--o)}to{translate:var(--dx) calc(var(--rise)*-1);opacity:0;scale:.5}}
+.store{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 20px 0 16px;border-radius:14px;background:#fff;color:#000;box-shadow:inset 0 -1px 0 rgba(0,0,0,.12),0 0 0 1px rgba(0,0,0,.2),0 1px 4px rgba(0,0,0,.5);transition:filter .2s,transform .18s}
+.store:hover{filter:brightness(.94)}.store:active{transform:scale(.98)}
+.store small{display:block;font-family:var(--f-ui);font-size:10px;letter-spacing:.12em;text-transform:uppercase;line-height:1;margin-bottom:4px}
+.store b{display:block;font-family:var(--f-ui);font-size:19px;font-weight:700;line-height:1.1}
+.store.ghost{background:radial-gradient(60% 65% at 50% 100%,rgba(255,255,255,.1),rgba(255,255,255,0)),linear-gradient(0deg,rgba(255,255,255,0) 41.25%,rgba(255,255,255,.12) 128.75%),linear-gradient(180deg,#0f0f0f,#0a0a0a);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 0 1px rgba(0,0,0,.2),0 1px 1px rgba(0,0,0,.4)}.store.ghost:hover{filter:brightness(1.25)}
+.store .apple{flex:none;shape-rendering:geometricPrecision;transform:translateZ(0);margin-top:-3px}
+.badges{display:flex;gap:10px 18px;flex-wrap:wrap;font-family:var(--f-ui);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3)}
+.badges span{display:flex;align-items:center;gap:8px}
+.badges svg{color:var(--orange)}
+.sparks.soft>i{box-shadow:0 0 4px 1px rgba(255,74,38,.55),0 0 10px 2px rgba(255,74,38,.18)}
+/*BASE-END*/
+/* ===================== GIVEAWAY ===================== */
+.gw-hero{position:relative;overflow:hidden;isolation:isolate}
+.gw-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url(img/hero-bg.png) center top/cover no-repeat;opacity:.95}
+.gw-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 50% 45%,rgba(255,74,38,.10),transparent 70%),linear-gradient(0deg,var(--bg),transparent 30%)}
+.gw-hero{min-height:calc(100vh - 68px)}
+.gw-hero .wrap{position:relative;z-index:1;display:grid;justify-items:center;text-align:center;min-height:calc(100vh - 68px);align-content:center;padding-block:40px}
+.gw-hero .g-copy{align-items:center;max-width:900px;gap:20px}
+.gw-hero .cta-row{justify-content:center}
+.gw-hero h1{font-size:clamp(40px,7vw,84px);line-height:.84}
+.gw-hero h1 .o{white-space:nowrap}
+.gw-hero .lede{margin-inline:auto;max-width:60ch}
+.lede b{color:var(--fg);font-weight:700}
+.chip-or{background:rgba(255,74,38,.12);box-shadow:inset 0 0 0 1px rgba(255,74,38,.35);color:#ffb3a3;align-self:center}
+.chip-or .dot{background:var(--orange)}
+
+/* fighters: photos + edge mask copied from fightapp.com/giveaway (.fighter) */
+.hf{position:absolute;bottom:0;top:40px;width:min(40vw,640px);height:calc(100% - 40px);object-fit:cover;object-position:top;z-index:0;pointer-events:none;mix-blend-mode:lighten;--fm:linear-gradient(to bottom,transparent 0%,#000 16%,#000 78%,transparent 99%),linear-gradient(var(--fade-to,to right),transparent 0%,#000 10%,#000 74%,transparent 100%);-webkit-mask-image:var(--fm);mask-image:var(--fm);-webkit-mask-composite:source-in;mask-composite:intersect}
+.hf-l{left:max(-4vw,calc(50% - 980px))}
+.hf-r{right:max(-4vw,calc(50% - 980px));--fade-to:to left}
+.hf-tag{position:absolute;z-index:1;bottom:26%;display:flex;flex-direction:column;gap:8px;font-family:var(--f-ui);text-transform:uppercase;pointer-events:none;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.hf-tag b{font-weight:700;font-size:20px;line-height:1;letter-spacing:.2px;color:#fff}
+.hf-tag-l{left:max(24px,calc(50% - 760px));text-align:left}
+.hf-tag-r{right:max(24px,calc(50% - 760px));text-align:right;align-items:flex-end}
+/* event pill (fighter tags + prize cards) */
+.evp{font-family:var(--f-ui);font-weight:700;font-size:11px;line-height:1;letter-spacing:.8px;text-transform:uppercase;color:#ffb3a3;text-shadow:none;padding:6px 12px;border-radius:999px;background:linear-gradient(rgba(255,74,38,.14),rgba(255,74,38,.14)),rgba(14,6,4,.78);box-shadow:inset 0 0 0 1px rgba(255,74,38,.4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);white-space:nowrap;display:inline-flex;align-items:center;gap:7px;align-self:flex-start}
+.evp::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange);box-shadow:0 0 8px rgba(255,74,38,.8)}
+.hf-tag-r .evp{align-self:flex-end}
+
+/* countdown */
+.cd{display:flex;flex-direction:column;align-items:center;gap:10px}
+.cd-label{font-family:var(--f-ui);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3)}
+.cd-row{display:flex;gap:8px}
+.cd-row div{width:60px;padding:10px 0 8px;border-radius:12px;background:linear-gradient(180deg,#171717,#0e0e0e);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);display:flex;flex-direction:column;align-items:center;gap:4px}
+.cd-row b{font-family:var(--f-ui);font-weight:700;font-size:24px;line-height:1;font-variant-numeric:tabular-nums}
+.cd-row small{font-family:var(--f-ui);font-weight:600;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3)}
+
+/* entry form, inside the hero */
+.gw-form{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;max-width:560px}
+.gw-form .waitlist{width:100%;max-width:none}
+.gw-form .wl-msg{min-height:0}
+.agree{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--fg-2);cursor:pointer}
+.agree input{appearance:none;-webkit-appearance:none;flex:none;width:18px;height:18px;margin:0;border-radius:5px;background:rgba(14,10,9,.78);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3);cursor:pointer;display:grid;place-items:center;transition:background .2s,box-shadow .2s}
+.agree input:checked{background:var(--orange);box-shadow:none}
+.agree input:checked::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;rotate:45deg;margin-top:-2px}
+.agree button,.fine button{text-decoration:underline;color:var(--fg);font-size:inherit}
+.fine{margin:0;max-width:640px;font-size:11px;line-height:1.55;color:var(--fg-3)}
+.fine button:hover,.agree button:hover{color:#ffb3a3}
+
+/* official rules pop-up */
+.rules-dlg{width:min(620px,calc(100vw - 32px));max-height:min(80vh,720px);padding:0;border:0;border-radius:20px;background:linear-gradient(180deg,#171717,#0e0e0e);color:var(--fg);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 30px 90px rgba(0,0,0,.7)}
+.rules-dlg::backdrop{background:rgba(0,0,0,.7);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.rules-dlg[open]{animation:pop .3s cubic-bezier(.22,1,.36,1)}
+.rules-in{padding:32px;display:flex;flex-direction:column;gap:12px;color:var(--fg-2);font-size:14px;line-height:1.6}
+.rules-in h2{font-family:var(--f-ui);font-weight:700;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg);margin:0 40px 6px 0}
+.rules-in p{margin:0}
+.rules-in h3{font-family:var(--f-ui);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin:8px 0 -4px}
+.rules-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);overflow:hidden}
+.rules-list li{display:flex;justify-content:space-between;gap:16px;padding:9px 14px}
+.rules-list li+li{border-top:1px solid rgba(255,255,255,.06)}
+.rules-list b{font-family:var(--f-ui);color:#ffb3a3;white-space:nowrap}
+.rules-x{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);color:var(--fg-2);font-size:20px;line-height:1}
+.rules-x:hover{background:rgba(255,255,255,.12);color:var(--fg)}
+.pending{color:#ffb3a3}
+
+@media (max-width:1060px){
+  .hf{width:52vw}
+}
+@media (max-width:640px){
+  .hf{top:56px;bottom:auto;width:66vw;height:min(470px,62vh)}.hf-l{left:-12vw}.hf-r{right:-12vw}
+  .hf-tag{bottom:auto;top:calc(min(360px,46vh) - 64px)}.hf-tag b{font-size:16px}.hf-tag .evp{font-size:9px;padding:5px 8px}.hf-tag-l{left:16px}.hf-tag-r{right:16px}
+  .gw-hero .wrap{min-height:0;padding-top:min(360px,46vh);align-content:start}
+  .cd-row div{width:54px}
+  .gw-form .waitlist{flex-direction:column}.gw-form .waitlist input,.gw-form .waitlist .btn{width:100%;flex:none}
+  .rules-in{padding:24px}
+  .sparks>i:nth-child(n+46){display:none}
+}
+@media (prefers-reduced-motion:reduce){.sparks{display:none}.g-copy{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="lit" x="-20%" y="-30%" width="140%" height="170%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="3.3" result="blur"/><feOffset in="blur" dy="1" result="low"/><feFlood flood-color="#ff4a26" flood-opacity="0.4"/><feComposite in2="low" operator="in" result="glow"/><feOffset in="SourceAlpha" dy="0.75" result="down"/><feComposite in="SourceAlpha" in2="down" operator="out" result="edge"/><feFlood flood-color="#fff" flood-opacity="0.38"/><feComposite in2="edge" operator="in" result="hair"/><feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/><feMergeNode in="hair"/></feMerge></filter></svg>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/mark.png" alt="">FIGHT APP</a>
+    <div class="nav-cta"><a class="btn btn-dark btn-sm" href="index.html">See the app</a></div>
+  </div>
+</nav>
+
+<header class="gw-hero">
+  <img class="hf hf-l" src="img/perry.webp" alt="" width="1024" height="1536" fetchpriority="high">
+  <img class="hf hf-r" src="img/nickal.webp" alt="" width="1024" height="1536" fetchpriority="high">
+  <div class="hf-tag hf-tag-l"><b>Mike Perry</b><span class="evp">UFC 337 Orlando · Feb 20</span></div>
+  <div class="hf-tag hf-tag-r"><b>Bo Nickal</b><span class="evp">UFC Fight Night · Feb 13</span></div>
+  <div class="sparks" id="gwSparks" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="g-copy">
+      <span class="chip-live chip-or"><span class="dot"></span>Fight App giveaway · Free to enter</span>
+      <h1 class="disp it">Win $2,000 +<br><span class="o">Fight Night<br>Tickets</span></h1>
+      <p class="lede">$2,000 and two tickets to <b>Mike Perry's return</b> or<br><b>Bo Nickal's UFC Fight Night</b>. Free to enter.</p>
+      <div class="cd" aria-live="off">
+        <span class="cd-label">Entries close in</span>
+        <div class="cd-row" id="cd"><div><b>--</b><small>Days</small></div><div><b>--</b><small>Hrs</small></div><div><b>--</b><small>Min</small></div><div><b>--</b><small>Sec</small></div></div>
+      </div>
+      <div class="gw-form" id="enter">
+        <form class="waitlist" data-wl novalidate><label for="gwEmail" style="position:absolute;left:-9999px">Email address</label><input id="gwEmail" type="email" placeholder="you@email.com" autocomplete="email"><button class="btn btn-primary" type="submit">Enter free</button></form>
+        <label class="agree"><input type="checkbox" id="gwAgree">I agree to the <button type="button" data-rules>Official Rules</button> and to get emails from Fight App.</label>
+        <p class="wl-msg" aria-live="polite"></p>
+        <p class="fine">NO PURCHASE NECESSARY. A purchase, deposit, or trade will not improve your chances. Open to legal residents of the 50 U.S. states and D.C., 21+. Void where prohibited. Ends Jan 15, 2027 at 11:59 PM ET. Odds depend on entries received. Not sponsored by the UFC, Instagram, X, or any promoter. Mike Perry and Bo Nickal are paid Fight App partners. <button type="button" data-rules>Official Rules</button>. Sponsor: Fight App, Inc.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<dialog class="rules-dlg" id="rules" aria-labelledby="rulesTitle">
+  <div class="rules-in">
+    <h2 id="rulesTitle">Official rules</h2>
+    <p><b>NO PURCHASE NECESSARY.</b> A purchase, deposit, or trade will not improve your chances. Void where prohibited.</p>
+    <h3>Who can win</h3>
+    <p>Legal residents of the 50 U.S. states and D.C. who are 21 or older. Anyone can join the Fight App waitlist; only people who meet these conditions can win a prize.</p>
+    <h3>When</h3>
+    <p>The giveaway ends Jan 15, 2027 at 11:59 PM ET. Winners are drawn on Jan 15, 2027.</p>
+    <h3>Prize</h3>
+    <p>$2,000 and two tickets to Mike Perry's return or Bo Nickal's UFC Fight Night on Feb 13th.</p>
+    <h3>How to enter</h3>
+    <p>Enter your email on the giveaway page: 40 entries. One sign-up per person.</p>
+    <ul class="rules-list">
+      <li><span>Follow us on Instagram</span><b>+10</b></li>
+      <li><span>Share Fight App to your Story</span><b>+15</b></li>
+      <li><span>Tag a friend in the comments</span><b>+10 each</b></li>
+      <li><span>Post with #FightAppGiveaway</span><b>+20 each</b></li>
+      <li><span>Follow us on X</span><b>+10</b></li>
+      <li><span>Share the giveaway on X</span><b>+15</b></li>
+      <li><span>Refer a friend who signs up</span><b>+30 each</b></li>
+      <li><span>Download the Fight App (opens Jan 1)</span><b>+100</b></li>
+    </ul>
+    <p>Up to 500 entries per person.</p>
+    <h3>Verification</h3>
+    <p>Entries are checked before the draw; an entry that cannot be confirmed does not count, and a claim that is not true voids every entry that person holds. Odds depend on entries received.</p>
+    <h3>Emails</h3>
+    <p>By entering you agree to receive emails from Fight App about the giveaway, the app and offers. You can unsubscribe at any time from any email.</p>
+    <h3>Sponsor</h3>
+    <p>Fight App, Inc. Not sponsored by the UFC, Instagram, X, or any promoter. Mike Perry and Bo Nickal are paid Fight App partners.</p>
+  </div>
+  <form method="dialog"><button class="rules-x" aria-label="Close">×</button></form>
+</dialog>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+/* sparks: same recipe as the app landing hero */
+const r=(a,b)=>a+Math.random()*(b-a);let h='';
+for(let i=0;i<90;i++){const d=r(3,7),s=r(2,5).toFixed(1);h+='<i style="left:'+r(0,100).toFixed(1)+'%;bottom:'+r(-5,40).toFixed(1)+'%;width:'+s+'px;height:'+s+'px;animation-duration:'+d.toFixed(1)+'s;animation-delay:-'+r(0,d).toFixed(1)+'s;--dx:'+Math.round(r(-160,140))+'px;--rise:'+Math.round(r(70,130))+'cqh;--o:'+r(.3,.65).toFixed(2)+'"></i>'}
+$('#gwSparks').innerHTML=h;
+
+/* countdown: entries close (placeholder date, confirm with legal) */
+const END=new Date('2027-01-15T23:59:59-05:00').getTime(),cells=$$('#cd b'),p=n=>String(n).padStart(2,'0');
+function tick(){let t=Math.max(0,END-Date.now())/1000|0;const v=[t/86400|0,t%86400/3600|0,t%3600/60|0,t%60];cells.forEach((c,i)=>c.textContent=p(v[i]))}
+tick();setInterval(tick,1000);
+
+/* official rules pop-up: opens from the fine print, closes on × or a click outside */const dlg=$('#rules');$$('[data-rules]').forEach(b=>b.addEventListener('click',()=>dlg.showModal()));dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+/* entry form (demo only, nothing is sent): valid email + rules box ticked */
+$$('[data-wl]').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();const i=f.querySelector('input'),m=f.parentElement.querySelector('.wl-msg'),a=$('#gwAgree'),v=i.value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){m.className='wl-msg err';m.textContent='Enter a valid email, like name@email.com.';return}
+  if(a&&!a.checked){m.className='wl-msg err';m.textContent='Tick the box to agree to the Official Rules.';return}
+  m.className='wl-msg';m.textContent='You’re in: 40 entries. Good luck!';i.value='';if(a)a.checked=false}));
+})();
+</script>
+</body>
+</html>
