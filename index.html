@@ -6,6 +6,7 @@
 <title>Fight App Landings</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<script>/* page transition: arriving from the other landing starts covered (see .pt) */try{if(sessionStorage.getItem('pt')){sessionStorage.removeItem('pt');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('pt-in')}}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@500;600;700&display=swap">
@@ -386,17 +387,26 @@ footer .brand{color:#fff}
 .us-hero .wrap{display:grid;grid-template-columns:1fr;justify-items:center;text-align:center;min-height:min(860px,calc(100vh / var(--z,1) - 68px));align-content:center;padding-block:60px 50px}
 .us-hero .g-copy{align-items:center;max-width:900px}
 .us-hero .cta-row,.us-hero .badges{justify-content:center}
-.us-hero .lede{margin-inline:auto;max-width:50ch}
-.hero-pair{position:absolute;inset:0;pointer-events:none;z-index:0}
-.hph{position:absolute;top:50%;margin:0;height:min(640px,calc(100vh / var(--z,1) - 240px));translate:0 -50%}
+.us-hero .lede{margin-inline:auto;max-width:54ch;font-size:16px}
+.hero-pair{--ph:min(640px,calc(100vh / var(--z,1) - 240px));--fw:min(1560px,124vw);position:absolute;inset:0;pointer-events:none;z-index:0}
+.hph{position:absolute;top:50%;margin:0;height:var(--ph);translate:0 -50%}
 .hph-l{left:-10px;aspect-ratio:472/1236;animation:rise .9s .15s cubic-bezier(.22,1,.36,1) both}
 .hph-r{right:-10px;aspect-ratio:493/1290;animation:rise .9s .25s cubic-bezier(.22,1,.36,1) both}
-.hph img{width:100%;height:100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,.6));animation:float 7s ease-in-out infinite}
+.hph img{width:100%;height:100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,.6))}
 .hph-r img{animation-delay:-3.5s}
 @media (prefers-reduced-motion:reduce){.hph,.hph img{animation:none}}
 /* smoke + sparks in front of the phones, low: so the render doesn't sit there flat */
 .hs-fx{position:absolute;left:-35%;right:-35%;bottom:-8%;height:50%;z-index:2;pointer-events:none}
-.hs-smoke{position:absolute;inset:0;overflow:visible}
+.hs-smoke{display:none}
+/* soft blur band across the bottom of the hero: hides the phones' lower edge */
+/* chill grounding: a thin octagon laid flat in real perspective under the phones, back edge fading out, plus a soft glow + contact shadow under each phone */
+.hero-floor{position:absolute;z-index:-1;left:50%;top:calc(50% + var(--ph) / 2);width:var(--fw);aspect-ratio:1000/1250;translate:-50% -46.4%;transform-origin:50% 40%;transform:perspective(3000px) rotateX(78deg);pointer-events:none;opacity:.55;-webkit-mask:linear-gradient(180deg,transparent 3%,rgba(0,0,0,.5) 24%,#000 48%);mask:linear-gradient(180deg,transparent 3%,rgba(0,0,0,.5) 24%,#000 48%)}
+/* light hanging straight down from the floor's front edge (screen space; top/width approximate the projected edge for --fw) */
+.hero-drop{position:absolute;z-index:-1;left:50%;top:calc(50% + var(--ph) / 2 + .081 * var(--fw) - 40px);width:calc(.641 * var(--fw) - 160px + 240px);height:clamp(90px,9vw,150px);translate:-50% 0;pointer-events:none;opacity:.55;background:linear-gradient(180deg,rgba(255,90,50,.26),rgba(255,74,38,.08) 45%,transparent);filter:blur(8px);-webkit-mask:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);mask:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent)}
+.hero-floor svg{display:block;width:100%;height:100%;overflow:visible}
+.hph::before{content:"";position:absolute;z-index:-1;left:4%;right:4%;bottom:-6%;height:14%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,90,50,.3),rgba(255,74,38,.08) 60%,transparent);filter:blur(14px)}
+.hph::after{content:"";position:absolute;z-index:-1;left:20%;right:20%;bottom:-1.5%;height:3.5%;border-radius:50%;background:rgba(0,0,0,.6);filter:blur(10px)}
+.hph img{-webkit-box-reflect:below 2px linear-gradient(transparent 82%,rgba(0,0,0,.14))}
 .hs-smoke i{position:absolute;bottom:0;border-radius:50%;filter:blur(26px);mix-blend-mode:screen;opacity:0;animation:hssmoke var(--d,12s) ease-in-out var(--dl,0s) infinite alternate}
 .hs-smoke i:nth-child(1){left:0;width:70%;height:55%;background:radial-gradient(closest-side,rgba(255,96,56,.6),rgba(255,74,38,.22) 55%,transparent);--d:11s;--tx:60px}
 .hs-smoke i:nth-child(2){right:0;width:65%;height:50%;background:radial-gradient(closest-side,rgba(255,130,90,.5),rgba(255,74,38,.16) 55%,transparent);--d:14s;--dl:-5s;--tx:-70px}
@@ -920,7 +930,7 @@ footer .brand{color:#fff}
 @media (max-width:1060px){
   .what{grid-template-columns:1fr 1fr}.trio{grid-template-columns:1fr}
   .g-hero .wrap,.us-hero .wrap,.demo,.split,.stream,.fightpage{grid-template-columns:1fr}
-  .hero-pair{position:relative;inset:auto;display:flex;justify-content:center;gap:4vw;height:min(480px,110vw);margin-top:8px}.hph{position:relative;top:auto;translate:none;height:100%}.hph-l{left:auto;margin-top:40px}.hph-r{right:auto}
+  .hero-pair{--ph:min(480px,110vw);position:relative;inset:auto;display:flex;justify-content:center;gap:4vw;height:var(--ph);margin-top:8px;margin-bottom:60px}.hero-floor{top:100%}.hero-drop{top:calc(100% + .081 * var(--fw) - 40px)}.hph{position:relative;top:auto;translate:none;height:100%}.hph-l{left:auto;margin-top:40px}.hph-r{right:auto}
   .markets{grid-template-columns:1fr 1fr}
   .ladder{grid-template-columns:repeat(4,1fr)}
   .how3,.steps{grid-template-columns:1fr}
@@ -1608,9 +1618,33 @@ footer .brand{color:#fff}
 @media (prefers-reduced-motion:reduce){.tp *{animation:none!important}}
 /* record book gets the spotlight */
 #u-records{padding-block:clamp(84px,9vw,130px)}
+/* PAGE TRANSITION (home <-> giveaway): an orange slash then a black panel with the fist wipe across.
+   Leaving: panels slide in from the right, then we navigate. Arriving: the page starts covered and the panels slide off to the left. */
+.ptx{position:fixed;inset:0;z-index:200;pointer-events:none;visibility:hidden;overflow:hidden}
+.ptx i{position:absolute;top:-10%;bottom:-10%;left:-25%;right:-25%;transform:translateX(120%) skewX(-14deg)}
+.ptx .pt-o{background:linear-gradient(100deg,#ff2000,#ff4a26 40%,#ff7a52);box-shadow:0 0 80px rgba(255,74,38,.6)}
+.ptx .pt-k{background:#070707}
+.ptx b{position:absolute;left:50%;top:50%;width:84px;translate:-50% -50%;opacity:0;filter:drop-shadow(0 0 24px rgba(255,74,38,.8))}
+.ptx b img{display:block;width:100%;height:auto}
+html.pt-out .ptx,html.pt-in .ptx{visibility:visible;pointer-events:auto}
+html.pt-out .ptx .pt-o{animation:ptIn .5s cubic-bezier(.7,0,.25,1) forwards}
+html.pt-out .ptx .pt-k{animation:ptIn .5s .09s cubic-bezier(.7,0,.25,1) forwards}
+html.pt-out .ptx b{animation:ptLogo .3s .4s ease-out forwards}
+html.pt-in .ptx i{transform:translateX(0) skewX(-14deg)}
+html.pt-in .ptx b{opacity:1;scale:1}
+html.pt-in .ptx .pt-k{animation:ptOut .6s .18s cubic-bezier(.7,0,.25,1) forwards}
+html.pt-in .ptx .pt-o{animation:ptOut .6s .28s cubic-bezier(.7,0,.25,1) forwards}
+html.pt-in .ptx b{animation:ptLogoOut .25s .05s ease-in forwards}
+html.pt-in .ptx{animation:ptDone 0s .9s forwards}
+@keyframes ptIn{from{transform:translateX(120%) skewX(-14deg)}to{transform:translateX(0) skewX(-14deg)}}
+@keyframes ptOut{from{transform:translateX(0) skewX(-14deg)}to{transform:translateX(-125%) skewX(-14deg)}}
+@keyframes ptLogo{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
+@keyframes ptLogoOut{to{opacity:0;scale:1.25}}
+@keyframes ptDone{to{visibility:hidden;pointer-events:none}}
 </style>
 </head>
 <body>
+<div class="ptx" aria-hidden="true"><i class="pt-o"></i><i class="pt-k"></i><b><img src="img/mark.png" alt=""></b></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="lit" x="-20%" y="-30%" width="140%" height="170%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="3.3" result="blur"/><feOffset in="blur" dy="1" result="low"/><feFlood flood-color="#ff4a26" flood-opacity="0.4"/><feComposite in2="low" operator="in" result="glow"/><feOffset in="SourceAlpha" dy="0.75" result="down"/><feComposite in="SourceAlpha" in2="down" operator="out" result="edge"/><feFlood flood-color="#fff" flood-opacity="0.38"/><feComposite in2="edge" operator="in" result="hair"/><feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/><feMergeNode in="hair"/></feMerge></filter></svg>
 
 <nav class="review" aria-label="Design review: pick a page" hidden>
@@ -1786,7 +1820,7 @@ footer .brand{color:#fff}
   <div class="sparks" id="usSparks" aria-hidden="true"></div>
   <div class="wrap">
     <div class="g-copy">
-      <a class="gw-pill" href="giveaway.html"><span class="dot"></span>Win $2,000 + UFC tickets<span class="go">Enter free <span class="arr">→</span></span></a>
+      <a class="gw-pill" href="giveaway.html" data-pt><span class="dot"></span>Win $2,000 + UFC tickets<span class="go">Enter free <span class="arr">→</span></span></a>
       <h1 class="disp it"><span class="stk">Predict.</span><br>Compete.<br><span class="o">Win.</span></h1>
       <p class="lede">Predict every UFC card, stack parlays and climb the leaderboard.<br>Coming to iPhone in January 2027.</p>
       <div class="cta-row">
@@ -1798,7 +1832,7 @@ footer .brand{color:#fff}
         <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.4a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.6" r="2.4"/></svg>Most US states</span>
       </div>
     </div>
-    <div class="hero-pair"><figure class="hph hph-l"><img src="img/hero-phone-l.png" width="472" height="1236" alt="Fight App home screen with upcoming fights" fetchpriority="high"><div class="hs-fx" aria-hidden="true"><div class="sparks"></div><div class="hs-smoke"><i></i><i></i><i></i><i></i></div></div></figure><figure class="hph hph-r"><img src="img/hero-phone-r.png" width="493" height="1290" alt="Fight App fight screen: Mike Perry vs Dillon Danis" fetchpriority="high"><div class="hs-fx" aria-hidden="true"><div class="sparks"></div><div class="hs-smoke"><i></i><i></i><i></i><i></i></div></div></figure></div>
+    <div class="hero-pair"><div class="hero-drop" aria-hidden="true"></div><div class="hero-floor" aria-hidden="true"><svg viewBox="0 0 1000 1250"><defs><linearGradient id="flDrop" gradientUnits="userSpaceOnUse" x1="0" y1="700" x2="0" y2="1240"><stop offset="0" stop-color="#ff4a26" stop-opacity=".3"/><stop offset=".45" stop-color="#ff4a26" stop-opacity=".1"/><stop offset="1" stop-color="#ff4a26" stop-opacity="0"/></linearGradient><filter id="flDropBlur" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="22"/></filter><radialGradient id="flFill"><stop offset="0" stop-color="#ff4a26" stop-opacity=".05"/><stop offset=".7" stop-color="#ff4a26" stop-opacity=".02"/><stop offset="1" stop-color="#ff4a26" stop-opacity="0"/></radialGradient><filter id="flGlow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter></defs><polygon points="298,10 702,10 990,298 990,702 702,990 298,990 10,702 10,298" fill="url(#flFill)" stroke="#ff4a26" stroke-opacity=".18" stroke-width="8" filter="url(#flGlow)"/><polygon points="298,10 702,10 990,298 990,702 702,990 298,990 10,702 10,298" fill="none" stroke="#ff7a52" stroke-opacity=".38" stroke-width="2"/><polygon points="339,110 661,110 890,339 890,661 661,890 339,890 110,661 110,339" fill="none" stroke="#ff4a26" stroke-opacity=".09" stroke-width="2"/></svg></div><figure class="hph hph-l"><img src="img/hero-phone-l.png" width="472" height="1236" alt="Fight App home screen with upcoming fights" fetchpriority="high"><div class="hs-fx" aria-hidden="true"><div class="sparks"></div><div class="hs-smoke"><i></i><i></i><i></i><i></i></div></div></figure><figure class="hph hph-r"><img src="img/hero-phone-r.png" width="493" height="1290" alt="Fight App fight screen: Mike Perry vs Dillon Danis" fetchpriority="high"><div class="hs-fx" aria-hidden="true"><div class="sparks"></div><div class="hs-smoke"><i></i><i></i><i></i><i></i></div></div></figure></div>
     <div hidden id="scrFight"></div><div hidden id="scrParlay"></div><!-- drawPhones() still writes here -->
   </div>
 </header>
@@ -2263,5 +2297,18 @@ if(!reduce){setInterval(mTick,1000);setInterval(()=>chat(Math.random()<.3),1700)
 (function(){document.querySelectorAll(".pf-frame>.pf-sp").forEach(sp=>{const fl=sp.closest(".pflow");if(fl){const c=sp.cloneNode(true);c.classList.add("pf-sp-out");[...c.children].forEach(i=>i.style.animationDelay="-"+(Math.random()*10).toFixed(1)+"s");fl.prepend(c)}})})();
 </script>
 
+<script>
+/* page transition: wipe in, then go to the other landing (skipped for new-tab clicks and reduced motion) */
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,h=document.documentElement;
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[data-pt]');if(!a||reduce||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
+    e.preventDefault();try{sessionStorage.setItem('pt','1')}catch(_){}
+    h.classList.remove('pt-in');h.classList.add('pt-out');setTimeout(()=>{location.href=a.href},620);
+  });
+  /* coming back via the back button restores this page from cache still covered: uncover it */
+  addEventListener('pageshow',e=>{if(e.persisted)h.classList.remove('pt-out','pt-in')});
+})();
+</script>
 </body>
 </html>
