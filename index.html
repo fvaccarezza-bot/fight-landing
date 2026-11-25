@@ -379,7 +379,7 @@ footer .brand{color:#fff}
 
 /* ===================== US (mobile app) ===================== */
 .us-hero{position:relative;overflow:hidden;isolation:isolate}
-.us-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url(img/table-wide.webp) center 30%/cover no-repeat;opacity:.28}
+.us-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url(img/hero-bg.webp) center top/cover no-repeat;opacity:.95}
 .us-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 50% 45%,rgba(255,74,38,.10),transparent 70%),linear-gradient(0deg,var(--bg),transparent 30%)}
 .us-hero .wrap{display:grid;grid-template-columns:1fr;justify-items:center;text-align:center;min-height:min(860px,calc(92vh / var(--z)));align-content:center;padding-block:70px 60px}
 .us-hero .g-copy{align-items:center;max-width:680px}
@@ -387,7 +387,7 @@ footer .brand{color:#fff}
 .us-hero .chip-live{align-self:center}
 .us-hero .lede{margin-inline:auto}
 /* fighters: photos + edge mask copied from fightapp.com/giveaway (.fighter) */
-.hf{position:absolute;bottom:0;top:40px;width:min(40vw,640px);height:calc(100% - 40px);object-fit:cover;object-position:top;z-index:0;pointer-events:none;--fm:linear-gradient(to bottom,transparent 0%,#000 6%,#000 78%,transparent 99%),linear-gradient(var(--fade-to,to right),transparent 0%,#000 10%,#000 74%,transparent 100%);-webkit-mask-image:var(--fm);mask-image:var(--fm);-webkit-mask-composite:source-in;mask-composite:intersect}
+.hf{position:absolute;bottom:0;top:40px;width:min(40vw,640px);height:calc(100% - 40px);object-fit:cover;object-position:top;z-index:0;pointer-events:none;mix-blend-mode:lighten;--fm:linear-gradient(to bottom,transparent 0%,#000 16%,#000 78%,transparent 99%),linear-gradient(var(--fade-to,to right),transparent 0%,#000 10%,#000 74%,transparent 100%);-webkit-mask-image:var(--fm);mask-image:var(--fm);-webkit-mask-composite:source-in;mask-composite:intersect}
 .hf-l{left:max(-4vw,calc(50% - 980px))}
 .hf-r{right:max(-4vw,calc(50% - 980px));--fade-to:to left}
 .us-hero h1{font-size:clamp(38px,12vw,108px)}
@@ -1449,6 +1449,130 @@ footer .brand{color:#fff}
 /* Retina desktop: shrink everything to 85% like browser zoom (same rule as Numancia). Full-screen vh/vw are divided by --z */
 :root{--z:1}
 @media (min-resolution:2dppx) and (min-width:1000px) and (max-width:1800px){:root{--z:.85}html{zoom:var(--z)}}
+
+/* ---------- Tipping (Figma "Tipping · Legal v2 (US)": 3A/3B tip sheet over the fighter profile) ---------- */
+#u-tip{overflow:hidden;padding-block:clamp(72px,8vw,120px)}
+#u-tip>.wrap{position:relative;z-index:1}
+#u-tip .split{align-items:center}
+#u-tip h2{font-size:clamp(32px,3.5vw,50px)}
+.tp-wrap{display:flex;justify-content:center}
+.tp{position:relative;width:340px}
+.tp::before{content:"";position:absolute;left:50%;top:44%;width:560px;height:560px;translate:-50% -50%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,74,38,.2),transparent);pointer-events:none}
+.tp-ph{position:relative;width:100%;aspect-ratio:1180/2475}
+.tp-shell{position:relative;z-index:2;display:block;width:100%;height:100%;pointer-events:none}
+.tp-scr{position:absolute;z-index:1;left:6.95%;top:4.97%;width:86.02%;height:89.13%;border-radius:12%/5.6%;overflow:hidden;background:#050505;container-type:inline-size}
+.tp-bg{position:absolute;left:0;top:0;width:100%;height:auto}
+.tp-dim{position:absolute;inset:0;background:rgba(0,0,0,.62);opacity:0;transition:opacity .45s ease}
+.tp-sh{position:absolute;left:3.98%;top:32.15%;width:92.04%;aspect-ratio:1110/1431;transform:translateY(130%);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.tp-sh img{position:absolute;inset:0;width:100%;height:100%}
+.tp-sh .sb{clip-path:inset(22.7% 0 64.7% 0);opacity:0;transition:opacity .25s ease,clip-path .01s}
+.tp-trk{position:absolute;left:3.78%;top:70.6%;width:92.4%;height:10.8%;opacity:0}
+.tp-tr{position:absolute;left:0;top:0;bottom:0;width:calc(13% + 2px);border-radius:14px 10px 10px 14px;background:linear-gradient(90deg,#24100a,#5c2212)}
+.tp-th{position:absolute;left:1%;top:8%;width:12.86%;height:84%;border-radius:22%;display:grid;place-items:center;background:linear-gradient(rgba(255,255,255,.28),rgba(255,255,255,0) 60%),#ff4a26;box-shadow:0 0 0 1px rgba(0,0,0,.2),0 3px 14px rgba(255,74,38,.55),inset 0 1px 0 rgba(255,255,255,.3)}
+.tp-th svg{width:40%;height:40%}
+.tp .tapfx{position:absolute;z-index:3;translate:-50% -50%}
+.tp-t0{left:20.3%;top:36.5%}.tp-t1{left:50%;top:48.2%}.tp-t2{left:7.6%;top:57.3%}
+.tp-ok{position:absolute;left:8%;right:8%;top:24%;display:flex;flex-direction:column;align-items:center;gap:3cqw;padding:7cqw 6cqw 6cqw;border-radius:6cqw;background:radial-gradient(90% 55% at 50% 0%,rgba(255,74,38,.32),transparent 70%),linear-gradient(#1b1b1b,#101010);box-shadow:0 0 0 1px rgba(255,255,255,.06),0 20px 50px rgba(0,0,0,.6);font-family:var(--f-ui);opacity:0;transform:scale(.8) translateY(20px);transition:opacity .35s ease,transform .5s cubic-bezier(.34,1.5,.64,1)}
+.tp-disc{position:relative;width:16cqw;height:16cqw;border-radius:50%;display:grid;place-items:center;background:linear-gradient(rgba(255,255,255,.3),rgba(255,255,255,0) 60%),#ff4a26;box-shadow:0 0 0 5px rgba(255,74,38,.15),0 6px 26px rgba(255,74,38,.55)}
+.tp-disc svg{width:50%;height:50%}
+.tp-h{font-weight:700;font-size:7cqw;letter-spacing:.06em;color:#fff}
+.tp-rows{width:100%;display:flex;flex-direction:column;gap:2cqw;padding:3.5cqw 0;border-block:1px solid rgba(255,255,255,.07)}
+.tp-rows span{display:flex;justify-content:space-between;align-items:baseline}
+.tp-rows i{font-style:normal;font-weight:600;font-size:3.2cqw;letter-spacing:.08em;color:rgba(255,255,255,.5)}
+.tp-rows b{font-weight:600;font-size:4.2cqw;color:#fff}.tp-rows b.g{color:#00f45a}
+.tp-ok small{font:400 3.2cqw/1.35 var(--f-body);color:rgba(255,255,255,.55);text-align:center}
+.tp-done{width:100%;margin-top:1cqw;padding:3.6cqw 0;border-radius:99px;text-align:center;font-weight:600;font-size:3.8cqw;letter-spacing:.1em;color:#fff;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.tp-burst{position:absolute;left:50%;top:15cqw;width:0;height:0}
+.tp-burst i{position:absolute;left:0;top:0;width:5px;height:5px;border-radius:50%;background:#ff7a45;box-shadow:0 0 8px #ff4a26;opacity:0}
+.tp-burst i.gr{background:#00f45a;box-shadow:0 0 8px #00f45a}
+.tp-chip{position:absolute;z-index:3;display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-radius:16px;background:linear-gradient(#1a1a1a,#0f0f0f);box-shadow:0 0 0 1px rgba(255,255,255,.07),0 14px 34px rgba(0,0,0,.55);font:600 14px/1.1 var(--f-ui);color:rgba(255,255,255,.55);white-space:nowrap;opacity:0;transform:translateY(10px) scale(.95);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.5,.64,1)}
+.tp-chip b{font-size:22px;color:#fff}.tp-chip b.g{color:#00f45a}
+.tp-chip small{font:600 10px/1 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:4px}
+.tp-chip.c1{left:-120px;top:58%}
+.tp-chip.c2{right:-110px;top:70%}
+#u-records{overflow:hidden;padding-block:clamp(72px,8vw,120px)}
+#u-records>.wrap{position:relative;z-index:1}
+#u-records .split{align-items:center}
+#u-records h2{font-size:clamp(34px,4.2vw,60px)}
+.rbk-bg{top:auto!important;bottom:0;width:98%!important;left:1%!important}
+.rbk .tp-scr{background:#0a0a0a}
+.rbk-time{position:absolute;left:12%;top:2.6%;z-index:1;font:600 14px/1 var(--f-ui);color:#fff}
+.rbk-sh{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.09) 50%,transparent 60%);transform:translateX(-120%)}
+.rbk.on .rbk-sh{animation:rbksh 4.5s cubic-bezier(.5,0,.3,1) 1s infinite}
+@keyframes rbksh{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.rbk .tp-chip.c1{left:auto;right:-110px;top:30%}
+.rbk .tp-chip.c2{right:auto;left:-130px;top:66%}
+.rbk.on .tp-chip{opacity:1;transform:none}
+.rbk.on .tp-chip.c1{transition-delay:.4s}.rbk.on .tp-chip.c2{transition-delay:.9s}
+.rbk.on .tp-chip.c1{animation:rbkbob 4s ease-in-out 1.2s infinite alternate}.rbk.on .tp-chip.c2{animation:rbkbob 4.6s ease-in-out 1.6s infinite alternate-reverse}
+@keyframes rbkbob{to{translate:0 -8px}}
+@media (min-width:901px){#u-tip .split>.tp-wrap{order:-1}}
+@media (max-width:900px){#u-records .split>.tp-wrap{margin-top:40px}.rbk .tp-chip.c1{right:-40px}.rbk .tp-chip.c2{left:-40px}}
+.tp-legal{margin-top:22px;max-width:460px;font:400 13px/1.5 var(--f-body);color:rgba(255,255,255,.38)}
+.tp-why{list-style:none;margin:30px 0 0;padding:0;display:flex;flex-direction:column;gap:20px;max-width:520px}
+.tp-why li{display:flex;gap:16px;font:400 15px/1.5 var(--f-body);color:rgba(255,255,255,.55)}
+.tp-why .ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#ff4a26;background:rgba(255,74,38,.1);box-shadow:inset 0 0 0 1px rgba(255,74,38,.22)}
+.tp-why b{display:block;margin-bottom:3px;font:600 17px/1.25 var(--f-ui);color:#fff}
+.tp-chip img{display:block;width:129px;height:26px;margin-top:6px}
+.tp-what{position:absolute;left:3.98%;top:32.04%;width:92.04%;height:auto;transform:translateY(160%);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.tp-ti{left:41.3%;top:36.5%}
+/* verification strip */
+.tp-ver{position:relative;z-index:1;margin-top:clamp(64px,7vw,100px)}
+.tp-vh{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.tp-vh .eyebrow{margin:0}
+.tp-vh h3{margin:0;font-size:clamp(26px,2.8vw,38px)}
+.tp-vg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.tp-vc{position:relative;display:flex;flex-direction:column;gap:10px;min-height:220px;padding:22px 22px 24px;border-radius:20px;border:1.41px solid transparent;background:linear-gradient(#171717,#0f0f0f) padding-box,linear-gradient(rgba(255,255,255,.08),rgba(255,255,255,.025)) border-box;box-shadow:0 2px 4px rgba(0,0,0,.2);overflow:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.tp-vc:hover{transform:translateY(-4px)}
+.tp-vc .n{font:600 12px/1 var(--f-ui);letter-spacing:.14em;color:rgba(255,255,255,.3)}
+.tp-vc b{margin-top:auto;font:600 18px/1.2 var(--f-ui);letter-spacing:.02em;color:#fff;text-transform:uppercase}
+.tp-vc p{margin:0;font:400 14px/1.5 var(--f-body);color:rgba(255,255,255,.5)}
+.tp-vc .cb{width:129px;height:26px;margin-top:14px}
+.tp-vc .pill{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:5px 10px;border-radius:8px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);font:600 12px/1 var(--f-ui);letter-spacing:.08em;color:rgba(255,255,255,.75)}
+.tp-vc .pill em{font-style:normal;color:#fff}
+.tp-vc .nm{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font:600 20px/1 var(--f-ui);letter-spacing:.06em;color:#fff}
+.tp-vc .tick{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:#ff4a26;box-shadow:0 0 12px rgba(255,74,38,.55)}
+.tp-vc .tb{display:flex;flex-direction:column;gap:4px;margin-top:10px}
+.tp-vc .tb small{font:600 11px/1 var(--f-ui);letter-spacing:.12em;color:rgba(255,255,255,.45)}
+.tp-vc .tb em{font:700 28px/1 var(--f-ui);font-style:normal;color:#fff}
+.tp-vc.bal{background:radial-gradient(90% 70% at 100% 0%,rgba(255,74,38,.16),transparent 70%) padding-box,linear-gradient(#171717,#0f0f0f) padding-box,linear-gradient(rgba(255,74,38,.3),rgba(255,255,255,.03)) border-box}
+.tp-ver.in .tp-vc{animation:tpvc .7s cubic-bezier(.22,1,.36,1) calc(var(--i) * .1s) both}
+@keyframes tpvc{from{opacity:0;transform:translateY(18px)}}
+.tp-ver:not(.in) .tp-vc{opacity:0}
+.tp-ver.in .tick{animation:tptick .5s cubic-bezier(.34,1.8,.64,1) .7s both}
+@keyframes tptick{from{transform:scale(0)}}
+@media (max-width:1000px){.tp-vg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.tp-vg{grid-template-columns:1fr}.tp-vc{min-height:0}}
+/* timeline: 0 tap ⓘ → 1 "What is a tip?" → 2 tap Tip → 3 sheet, tap $10 → 4 tap tick → 5 ticked → 6 slide → 7 sent */
+.tp-ti{--td:.7s}.tp-t0{--td:.55s}.tp-t1{--td:.45s}.tp-t2{--td:.3s}
+.tp[data-s="0"] .tp-ti::before,.tp[data-s="2"] .tp-t0::before,.tp[data-s="3"] .tp-t1::before,.tp[data-s="4"] .tp-t2::before{animation:tapdot .95s cubic-bezier(.3,.7,.4,1) var(--td) both}
+.tp[data-s="0"] .tp-ti::after,.tp[data-s="2"] .tp-t0::after,.tp[data-s="3"] .tp-t1::after,.tp[data-s="4"] .tp-t2::after{animation:tapring .7s cubic-bezier(.2,.7,.3,1) calc(var(--td) + .38s) both}
+.tp[data-s="0"] .tp-ti i,.tp[data-s="2"] .tp-t0 i,.tp[data-s="3"] .tp-t1 i,.tp[data-s="4"] .tp-t2 i{animation:tapring .8s cubic-bezier(.2,.7,.3,1) calc(var(--td) + .5s) both}
+.tp[data-s="0"] .tp-chip.c1,.tp[data-s="1"] .tp-chip.c1,.tp[data-s="2"] .tp-chip.c1{opacity:1;transform:none}
+.tp[data-s="1"] .tp-dim,.tp[data-s="3"] .tp-dim,.tp[data-s="4"] .tp-dim,.tp[data-s="5"] .tp-dim,.tp[data-s="6"] .tp-dim,.tp[data-s="7"] .tp-dim{opacity:1}
+.tp[data-s="1"] .tp-what{transform:none}
+.tp[data-s="3"] .tp-sh,.tp[data-s="4"] .tp-sh,.tp[data-s="5"] .tp-sh,.tp[data-s="6"] .tp-sh{transform:none}
+.tp[data-s="4"] .sb,.tp[data-s="5"] .sb,.tp[data-s="6"] .sb{opacity:1}
+.tp[data-s="5"] .sb,.tp[data-s="6"] .sb{clip-path:inset(0)}
+.tp[data-s="6"] .tp-trk{opacity:1}
+.tp[data-s="6"] .tp-th{animation:tpslide .85s cubic-bezier(.6,0,.25,1) .25s both}
+.tp[data-s="6"] .tp-tr{animation:tptrail .85s cubic-bezier(.6,0,.25,1) .25s both}
+@keyframes tpslide{to{left:86.1%}}
+@keyframes tptrail{to{width:100%}}
+.tp[data-s="7"] .tp-sh{transform:translateY(130%);transition-duration:.45s}
+.tp[data-s="7"] .tp-ok{opacity:1;transform:none;transition-delay:.15s}
+.tp[data-s="7"] .tp-burst i{animation:tpburst .9s cubic-bezier(.2,.7,.3,1) .3s both}
+@keyframes tpburst{0%{opacity:1;transform:none}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.4)}}
+.tp[data-s="7"] .tp-disc{animation:tpdisc .6s cubic-bezier(.34,1.8,.64,1) .2s both}
+@keyframes tpdisc{from{transform:scale(0) rotate(-30deg)}}
+.tp[data-s="7"] .tp-chip.c2{opacity:1;transform:none;transition-delay:.6s}
+.tp.rst .tp-scr>*{opacity:0!important;transition:opacity .35s!important}
+.tp.nt,.tp.nt *{transition:none!important;animation:none!important}
+@media (max-width:900px){.tp{width:270px}.tp-chip.c1{left:-40px}.tp-chip.c2{right:-40px}.tp-chip b{font-size:18px}#u-tip .split>.tp-wrap{order:2;margin-top:40px}}
+@media (max-width:420px){.tp{width:240px}.tp-chip.c1{left:-24px}.tp-chip.c2{right:-24px}}
+@media (prefers-reduced-motion:reduce){.tp *{animation:none!important}}
+/* record book gets the spotlight */
+#u-records{padding-block:clamp(84px,9vw,130px)}
 </style>
 </head>
 <body>
@@ -1618,7 +1742,7 @@ footer .brand{color:#fff}
 <nav class="nav" aria-label="Main">
   <div class="wrap">
     <a class="brand" href="#us"><img src="img/mark.png" alt="">FIGHT APP</a>
-    <div class="nav-links"><a href="#u-how">How it works</a><a href="#u-parlays">Parlays</a><a href="#u-social">Social</a><a href="#u-records">Records</a><a href="#u-fights">Fights</a></div>
+    <div class="nav-links"><a href="#u-how">How it works</a><a href="#u-records">Record book</a><a href="#u-tip">Tipping</a></div>
     <div class="nav-cta"><span class="region">US</span><a class="btn btn-primary btn-sm" href="#u-get">Get the app</a></div>
   </div>
 </nav>
@@ -1669,81 +1793,71 @@ footer .brand{color:#fff}
   </div>
 </section>
 
-<section class="band" id="u-parlays">
-  <div class="sparks soft" id="parlaySparks" aria-hidden="true"></div>
-  <div class="wrap split">
-    <div class="pflow" id="pflow"></div>
-    <div>
-      <div class="sec-head" style="margin-bottom:0"><p class="eyebrow">Parlays</p><h2 class="disp">Stack the card. <span class="o">Multiply it.</span></h2><p class="lede">Combine predictions across a card into one ticket. All legs must win, and the payout grows with every leg.</p></div>
-      <ul class="bullets">
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Up to 10 legs</b>Mix fights from the same event or across the weekend.</div></li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Every leg, live</b>See which legs landed while the rest of the card plays out.</div></li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Share the ticket</b>Post it to your feed and let your followers ride along.</div></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="u-profile">
+<section class="band" id="u-records">
+  <div class="sparks soft rbk-sp" aria-hidden="true"></div>
   <div class="wrap split">
     <div>
-      <div class="sec-head" style="margin-bottom:0"><p class="eyebrow">Your profile</p><h2 class="disp">Every call. <span class="o">On the record.</span></h2><p class="lede">Your profile keeps score for you. Track your P&amp;L, follow every open and settled prediction and show off the trophies you earn.</p></div>
+      <div class="sec-head" style="margin-bottom:0"><p class="eyebrow">Record book</p><h2 class="disp">Know the<br><span class="o">legends.</span></h2><p class="lede">Explore the all-time leaders in combat sports history, right next to the fights you call.</p></div>
       <ul class="bullets">
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Your P&amp;L at a glance</b>See how you are doing over the last 24 hours, 7 days or 30 days.</div></li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Open and settled</b>Follow your live tickets and look back at every call you made.</div></li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Trophies on display</b>Every milestone lands on your profile for your followers to see.</div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>All-time leaders</b>Most wins, longest unbeaten streaks and knockout leaders.</div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Certified records</b>Every bout corroborated by two independent sources.</div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Tip from any profile</b>Open a fighter and back them with a tip.</div></li>
       </ul>
     </div>
-    <div class="pflow" id="prflow"></div>
-  </div>
-</section>
-
-<section class="interlude" aria-label="Call it. Stack it. Prove it.">
-  <div class="wrap"><p class="disp il"><span>Call it.</span><span class="o">Stack it.</span><span class="ol">Prove it.</span></p></div>
-</section>
-
-<section class="band" id="u-social">
-  <div class="sparks soft lv-sp" aria-hidden="true"></div>
-  <div class="wrap lv">
-    <div class="lv-l">
-      <div class="sec-head soc-head"><p class="eyebrow">Built for fight fans</p><h2 class="disp">Talk your talk. <span class="o">Then prove it.</span></h2><p class="lede">Every prediction can become a post. Follow sharp callers, climb the weekly leaderboard and fill your trophy room.</p></div>
-      <div class="lv-now">
-        <div class="lv-top"><span class="bdg b-live"><i class="ld"></i>LIVE NOW</span><span class="lv-ev">UFC FIGHT NIGHT · MAIN CARD</span></div>
-        <div class="lv-cnt"><b id="lvFans">12,804</b><small>fans in the feed right now</small></div>
-        <div class="lv-tr"><span class="lv-k">Trending picks</span><div id="lvTrend"></div></div>
+    <div class="tp-wrap">
+      <div class="tp rbk" aria-hidden="true">
+        <div class="tp-ph">
+          <div class="tp-scr"><span class="rbk-time">09:02</span><img class="tp-bg rbk-bg" src="img/rb/screen.png" width="1182" height="2577" alt="" loading="lazy" decoding="async"><span class="rbk-sh"></span></div>
+          <img class="tp-shell" src="img/screens/phone-shell.png" width="1180" height="2475" alt="" loading="lazy">
+        </div>
+        <span class="tp-chip c1"><b>50-0-4</b><small>Floyd Mayweather · Most wins</small></span>
+        <span class="tp-chip c2"><b>29</b><small>Fights unbeaten</small></span>
       </div>
     </div>
-    <div class="lv-feed" id="liveFeed" aria-label="Live fan feed"><div class="lv-list"></div></div>
   </div>
 </section>
 
-<section class="band" id="u-records">
-  <div class="wrap">
-    <div class="row-head"><div><p class="eyebrow">Record book</p><h2 class="disp">Know the <span class="o">legends.</span></h2></div><p class="lede">Explore the all-time leaders in combat sports history, right next to the fights you call. Back a fighter you believe in? Send a tip straight to their profile.</p></div>
-    <div class="rb" id="rb"></div>
-  </div>
-</section>
-
-<section class="band" id="u-trophies" style="background:var(--bg-2)">
-  <img class="tr-float" src="img/trophy/veteran.png" width="270" height="297" alt="" aria-hidden="true">
+<section class="band" id="u-tip">
+  <div class="sparks soft tp-sp" aria-hidden="true"></div>
   <div class="wrap split">
-    <div>
-      <div class="sec-head" style="margin-bottom:0"><p class="eyebrow">Trophy room</p><h2 class="disp">Earn it. <span class="o">Flex it.</span></h2><p class="lede">Every call counts toward a trophy. Climb from bronze to gold, finish step-by-step challenges and pin your six best to your profile.</p></div>
-      <ul class="bullets">
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Tiered achievements</b>Bronze, silver and gold. Each tier unlocks as your record grows.</div></li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Step by step</b>Short challenges that walk you through the app and pay off with a badge.</div></li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Passport</b>Stamp a city badge for every fight town you call.</div></li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff4a26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><b>Leaderboard</b>Every win moves you up. See where you rank against every fan in the app.</div></li>
-      </ul>
+    <div class="tp-wrap">
+      <div class="tp" data-s="0" aria-hidden="true">
+        <div class="tp-ph">
+          <div class="tp-scr">
+            <img class="tp-bg" src="img/tip/profile.png" width="1206" height="2625" alt="" loading="lazy" decoding="async">
+            <span class="tapfx tp-ti"><i></i></span><span class="tapfx tp-t0"><i></i></span>
+            <span class="tp-dim"></span>
+            <img class="tp-what" src="img/tip/what.png" width="1110" height="1380" alt="" decoding="async">
+            <div class="tp-sh">
+              <img class="sa" src="img/tip/sheet-a.png" width="1110" height="1431" alt="" decoding="async">
+              <img class="sb" src="img/tip/sheet-b.png" width="1110" height="1431" alt="" decoding="async">
+              <span class="tp-trk"><i class="tp-tr"></i><i class="tp-th"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></i></span>
+              <span class="tapfx tp-t1"><i></i></span><span class="tapfx tp-t2"><i></i></span>
+            </div>
+            <div class="tp-ok">
+              <span class="tp-burst"></span>
+              <span class="tp-disc"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span>
+              <b class="tp-h">TIP SENT</b>
+              <div class="tp-rows"><span><i>FIGHTER</i><b>TRAVIS FULTON</b></span><span><i>AMOUNT</i><b class="g">$10.00</b></span></div>
+              <small>Held on-chain until Travis collects it.</small>
+              <span class="tp-done">DONE</span>
+            </div>
+          </div>
+          <img class="tp-shell" src="img/screens/phone-shell.png" width="1180" height="2475" alt="" loading="lazy">
+        </div>
+        <span class="tp-chip c1"><b>315-59-10</b><img src="img/tip/certified.png" width="129" height="26" alt="Certified record"></span>
+        <span class="tp-chip c2"><b class="g">+$10.00</b><small>Tip sent to Travis Fulton</small></span>
+      </div>
     </div>
-    <div class="pflow" id="tflow"></div>
-  </div>
-</section>
-
-<section class="band" id="u-fights">
-  <div class="wrap">
-    <div class="row-head"><div><p class="eyebrow">The fights</p><h2 class="disp">The biggest <span class="o">nights.</span></h2></div><p class="lede">Every UFC card in one place, from numbered events to Fight Nights.</p></div>
-    <div class="fsched" id="fcal" role="list"></div>
+    <div>
+      <div class="sec-head" style="margin-bottom:0"><p class="eyebrow">Tipping</p><h2 class="disp">Back your fighter.<br><span class="o">Tip them direct.</span></h2><p class="lede">Back the fighters you believe in. Tap Tip on any fighter's profile, pick $5, $10 or $25 and slide. You can tip any time, whether or not you made a prediction.</p></div>
+      <ul class="tp-why">
+        <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g><path d="M20 12V18C20 20.21 18.21 22 16 22H8C5.79 22 4 20.21 4 18V12C4 11.45 4.45 11 5 11H6.97C7.52 11 7.97 11.45 7.97 12V15.14C7.97 15.88 8.38 16.56 9.03 16.91C9.32 17.07 9.64 17.15 9.97 17.15C10.35 17.15 10.73 17.04 11.06 16.82L12.01 16.2L12.89 16.79C13.5 17.2 14.28 17.25 14.93 16.9C15.59 16.55 16 15.88 16 15.13V12C16 11.45 16.45 11 17 11H19C19.55 11 20 11.45 20 12Z" fill="currentColor"/><path d="M21.5 7V8C21.5 9.1 20.97 10 19.5 10H4.5C2.97 10 2.5 9.1 2.5 8V7C2.5 5.9 2.97 5 4.5 5H19.5C20.97 5 21.5 5.9 21.5 7Z" fill="currentColor"/><path d="M11.64 5H6.12C5.78 4.63 5.79 4.06 6.15 3.7L7.57 2.28C7.94 1.91 8.55 1.91 8.92 2.28L11.64 5Z" fill="currentColor"/><path d="M17.87 5H12.35L15.07 2.28C15.44 1.91 16.05 1.91 16.42 2.28L17.84 3.7C18.2 4.06 18.21 4.63 17.87 5Z" fill="currentColor"/><path d="M13.97 11C14.52 11 14.97 11.45 14.97 12V15.13C14.97 15.93 14.08 16.41 13.42 15.96L12.52 15.36C12.19 15.14 11.76 15.14 11.42 15.36L10.48 15.98C9.82 16.42 8.94 15.94 8.94 15.15V12C8.94 11.45 9.39 11 9.94 11H13.97Z" fill="currentColor"/><g opacity="0"></g></g></svg></span><div><b>Voluntary gift</b>A tip is a voluntary gift to a fighter. It is optional and owed to no one.</div></li>
+        <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g><path d="M18.54 4.12L13.04 2.06C12.47 1.85 11.54 1.85 10.97 2.06L5.47 4.12C4.41 4.52 3.55 5.76 3.55 6.89V14.99C3.55 15.8 4.08 16.87 4.73 17.35L10.23 21.46C11.2 22.19 12.79 22.19 13.76 21.46L19.26 17.35C19.91 16.86 20.44 15.8 20.44 14.99V6.89C20.45 5.76 19.59 4.52 18.54 4.12ZM15.48 9.72L11.18 14.02C11.03 14.17 10.84 14.24 10.65 14.24C10.46 14.24 10.27 14.17 10.12 14.02L8.52 12.4C8.23 12.11 8.23 11.63 8.52 11.34C8.81 11.05 9.29 11.05 9.58 11.34L10.66 12.42L14.43 8.65C14.72 8.36 15.2 8.36 15.49 8.65C15.78 8.94 15.78 9.43 15.48 9.72Z" fill="currentColor"/><g opacity="0"></g></g></svg></span><div><b>Nothing in return</b>Tips don't buy content, perks, services, information or influence.</div></li>
+        <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g><g opacity="0"></g><path d="M7 2H6C3 2 2 3.79 2 6V7V21C2 21.83 2.94 22.3 3.6 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.29 22.29C8.68 22.68 9.32 22.68 9.71 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7ZM5.97 14.01C5.42 14.01 4.97 13.56 4.97 13.01C4.97 12.46 5.42 12.01 5.97 12.01C6.52 12.01 6.97 12.46 6.97 13.01C6.97 13.56 6.52 14.01 5.97 14.01ZM5.97 10.01C5.42 10.01 4.97 9.56 4.97 9.01C4.97 8.46 5.42 8.01 5.97 8.01C6.52 8.01 6.97 8.46 6.97 9.01C6.97 9.56 6.52 10.01 5.97 10.01ZM12 13.76H9C8.59 13.76 8.25 13.42 8.25 13.01C8.25 12.6 8.59 12.26 9 12.26H12C12.41 12.26 12.75 12.6 12.75 13.01C12.75 13.42 12.41 13.76 12 13.76ZM12 9.76H9C8.59 9.76 8.25 9.42 8.25 9.01C8.25 8.6 8.59 8.26 9 8.26H12C12.41 8.26 12.75 8.6 12.75 9.01C12.75 9.42 12.41 9.76 12 9.76Z" fill="currentColor"/><path d="M18.01 2V3.5C18.67 3.5 19.3 3.77 19.76 4.22C20.24 4.71 20.5 5.34 20.5 6V8.42C20.5 9.16 20.17 9.5 19.42 9.5H17.5V4.01C17.5 3.73 17.73 3.5 18.01 3.5V2ZM18.01 2C16.9 2 16 2.9 16 4.01V11H19.42C21 11 22 10 22 8.42V6C22 4.9 21.55 3.9 20.83 3.17C20.1 2.45 19.11 2.01 18.01 2C18.01 2 18.02 2 18.01 2Z" fill="currentColor"/></g></svg></span><div><b>Payment details</b>Tips are held on-chain until the fighter collects them. Uncollected tips are returned to you after 75 days. Solana network fees apply.</div></li>
+      </ul>
+      <p class="tp-legal">Every tip needs a fresh acknowledgement: "I'm sending a voluntary gift, with no agreement to receive information, services or influence in return."</p>
+    </div>
   </div>
 </section>
 
@@ -1813,7 +1927,7 @@ document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');i
 (function(){const r=(a,b)=>a+Math.random()*(b-a);let h='';for(let i=0;i<90;i++){const d=r(3,7),s=r(2,5).toFixed(1);h+='<i style="left:'+r(0,100).toFixed(1)+'%;bottom:'+r(-5,40).toFixed(1)+'%;width:'+s+'px;height:'+s+'px;animation-duration:'+d.toFixed(1)+'s;animation-delay:-'+r(0,d).toFixed(1)+'s;--dx:'+Math.round(r(-160,140))+'px;--rise:'+Math.round(r(70,130))+'cqh;--o:'+r(.3,.65).toFixed(2)+'"></i>'}$('#usSparks').innerHTML=h})();
 
 /* soft background sparks for the Parlays section */
-(function(){const r=(a,b)=>a+Math.random()*(b-a);let h='';for(let i=0;i<40;i++){const d=r(9,16),s=r(1,2).toFixed(1);h+='<i style="left:'+r(0,100).toFixed(1)+'%;bottom:'+r(-5,50).toFixed(1)+'%;width:'+s+'px;height:'+s+'px;animation-duration:'+d.toFixed(1)+'s;animation-delay:-'+r(0,d).toFixed(1)+'s;--dx:'+Math.round(r(-20,20))+'px;--rise:'+Math.round(r(40,80))+'cqh;--o:'+r(.15,.35).toFixed(2)+'"></i>'}$('#parlaySparks').innerHTML=h})();
+(function(){const r=(a,b)=>a+Math.random()*(b-a);let h='';for(let i=0;i<40;i++){const d=r(9,16),s=r(1,2).toFixed(1);h+='<i style="left:'+r(0,100).toFixed(1)+'%;bottom:'+r(-5,50).toFixed(1)+'%;width:'+s+'px;height:'+s+'px;animation-duration:'+d.toFixed(1)+'s;animation-delay:-'+r(0,d).toFixed(1)+'s;--dx:'+Math.round(r(-20,20))+'px;--rise:'+Math.round(r(40,80))+'cqh;--o:'+r(.15,.35).toFixed(2)+'"></i>'}const ps=$('#parlaySparks');if(ps)ps.innerHTML=h})();
 
 /* ---------- US ticker ---------- */
 const UTK=[['UFC FN','Perry vs Danis','Live now',1],['UFC 327','Topuria vs Tsarukyan','Sat · 10PM ET'],['UFC FN','Sandhagen vs Nurmagomedov','Fri · 9PM ET'],['UFC FN','Whittaker vs Wallace','Sat · 7PM ET'],['UFC 328','Pereira vs Ankalaev','Sat · 10PM ET']];
@@ -1861,7 +1975,7 @@ drawPhones();
 const RB=[['Most wins','All-time leaders','Wins','50','All-time<br>record','Wins',[['mayweather','Floyd','Mayweather','50','50-0-4'],['khabib','Khabib','Nurmagomedov','29','29-0-0'],['silva','Anderson','Silva','28','28-11-0']]],
   ['Unbeaten','Longest undefeated streaks','Streak','29','Fights<br>unbeaten','Streak',[['khabib-2','Khabib','Nurmagomedov','29','29-0-0'],['mayweather-2','Floyd','Mayweather','27','50-0-4'],['gsp','Georges','St-Pierre','26','26-0-0']]],
   ['Knockout leaders','Most knockout wins','<span class="lc">KOs</span>','44','Knockout<br>wins','<span class="lc">KOs</span>',[['tyson','Mike','Tyson','44','44-6-0'],['wilder','Deontay','Wilder','42','42-2-1'],['foreman','George','Foreman','37','37-10-0']]]];
-$('#rb').innerHTML=RB.map(s=>'<div class="rb-sec"><div class="rb-h"><b>'+s[0]+'</b><small>'+s[1]+'</small></div><div class="rb-row"><div class="rb-hero"><em>'+s[2]+'</em><strong>'+s[3]+'</strong><small>'+s[4]+'</small></div>'+
+if($('#rb'))$('#rb').innerHTML=RB.map(s=>'<div class="rb-sec"><div class="rb-h"><b>'+s[0]+'</b><small>'+s[1]+'</small></div><div class="rb-row"><div class="rb-hero"><em>'+s[2]+'</em><strong>'+s[3]+'</strong><small>'+s[4]+'</small></div>'+
   s[6].map((l,i)=>'<div class="leader fc"><img class="pt" src="img/figma/p-'+l[0]+'.jpg" alt="" loading="lazy"><span class="fade"></span><span class="m-c"></span><span class="m-r"></span><div class="in"><div class="top"><span class="rk">'+(i+1)+'</span><span class="st"><b>'+l[3]+'</b><i>'+s[5]+'</i></span></div><div><div class="nm">'+l[1]+'<br>'+l[2]+'</div><div class="rec">'+l[4]+'</div></div></div></div>').join('')+'</div></div>').join('');
 const SP=[['all','All sports'],['mma','MMA'],['boxing','Boxing'],['muaythai','Muay Thai'],['kickboxing','Kickboxing'],['bareknuckle','Bare knuckle'],['grappling','Grappling'],['wrestling','Wrestling'],['slap','Slap']];
 if($('#sports'))$('#sports').innerHTML=SP.map((s,i)=>'<button class="sport'+(i?'':' all-t')+'" aria-pressed="'+!i+'"><span class="art"><img'+(i?'':' class="all"')+' src="img/figma/ticket-'+s[0]+'.svg" alt=""></span><span>'+s[1]+'</span></button>').join('');
@@ -1972,7 +2086,7 @@ addEventListener('pointermove',e=>{const b=e.target.closest&&e.target.closest('.
 /* ---------- Three taps: sticky phone follows the step in view ---------- */
 (function(){const hs=document.querySelector('.hs');if(!hs)return;const st=[...hs.querySelectorAll('.hs-step')],num=hs.querySelector('.hs-num');
   const ph=hs.querySelector('.hs-ph');
-  {const w=hs.querySelector('.hs-slw');if(w){const fit=()=>w.style.setProperty('--k',(w.clientWidth/336).toFixed(4));fit();addEventListener('resize',fit)}}
+  {const w=hs.querySelector('.hs-slw');if(w){const fit=()=>{if(w.clientWidth)w.style.setProperty('--k',(w.clientWidth/336).toFixed(4))};fit();if(window.ResizeObserver)new ResizeObserver(fit).observe(w);else addEventListener('resize',fit)}}
   {const sp=hs.querySelector('.hs-sp'),r=(a,b)=>a+Math.random()*(b-a);let h='';if(sp){for(let i=0;i<42;i++){const d=r(8,16),z=r(1,2.6).toFixed(1);h+='<i style="left:'+r(0,100).toFixed(1)+'%;bottom:'+r(-5,60).toFixed(1)+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+d.toFixed(1)+'s;animation-delay:-'+r(0,d).toFixed(1)+'s;--ax:'+Math.round(r(-60,60))+'px;--bx:'+Math.round(r(-60,60))+'px;--dx:'+Math.round(r(-80,80))+'px;--rise:'+Math.round(r(35,75))+'cqh;--o:'+r(.2,.55).toFixed(2)+'"></i>'}sp.innerHTML=h}}
   {let b='';const r=(a,z)=>a+Math.random()*(z-a);for(let i=0;i<28;i++){const a=Math.random()*Math.PI*2,R=r(40,105);b+='<i class="'+(i%3?'':'gr')+'" style="--tx:'+Math.round(Math.cos(a)*R)+'px;--ty:'+Math.round(Math.sin(a)*R*.8)+'px;--bd:'+r(.3,.5).toFixed(2)+'s"></i>'}const bu=hs.querySelector('.hs-burst');if(bu)bu.innerHTML=b}
   const A=['rotate(-6deg)','translateY(-12px) rotate(0deg)','rotate(6deg)'],still=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2057,6 +2171,23 @@ addEventListener('pointermove',e=>{const b=e.target.closest&&e.target.closest('.
 (function(){const root=document.getElementById('fcal');if(!root)return;
   const E=[['Tonight','Live now','UFC FN','Perry vs Danis','mma',1],['Sat','10PM ET','UFC 327','Topuria vs Tsarukyan','mma'],['Fri','9PM ET','UFC FN','Sandhagen vs Nurmagomedov','mma'],['Sat','7PM ET','UFC FN','Whittaker vs Wallace','mma'],['Sat','10PM ET','UFC 328','Pereira vs Ankalaev','mma']];
   root.innerHTML=E.map(e=>'<div class="fc-row" role="listitem"><div class="fc-when'+(e[5]?' live':'')+'"><b>'+e[0]+'</b><small>'+e[1]+'</small></div><span class="fc-lg">'+e[2]+'</span><span class="fc-t">'+e[3]+'</span><svg class="fc-go" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>').join('');
+})();
+
+/* ---------- Record Book phone: chips + sheen while visible ---------- */
+(function(){const r=document.querySelector('.rbk');if(!r)return;const R=(a,b)=>a+Math.random()*(b-a);const sp=document.querySelector('.rbk-sp');if(sp){let h='';for(let i=0;i<30;i++){const d=R(8,16),z=R(1,2.6).toFixed(1);h+='<i style="left:'+R(0,100).toFixed(1)+'%;bottom:'+R(-5,60).toFixed(1)+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+d.toFixed(1)+'s;animation-delay:-'+R(0,d).toFixed(1)+'s;--dx:'+Math.round(R(-80,80))+'px;--rise:'+Math.round(R(35,75))+'cqh;--o:'+R(.2,.5).toFixed(2)+'"></i>'}sp.innerHTML=h}
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){r.classList.add('on');return}
+  new IntersectionObserver(([e])=>r.classList.toggle('on',e.isIntersecting),{threshold:.3}).observe(r)})();
+
+/* ---------- Tipping: looped tip flow on the fighter profile ---------- */
+(function(){const tp=document.querySelector('.tp:not(.rbk)');if(!tp)return;const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  {const sp=document.querySelector('.tp-sp'),R=(a,b)=>a+Math.random()*(b-a);let h='';if(sp){for(let i=0;i<30;i++){const d=R(8,16),z=R(1,2.6).toFixed(1);h+='<i style="left:'+R(0,100).toFixed(1)+'%;bottom:'+R(-5,60).toFixed(1)+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+d.toFixed(1)+'s;animation-delay:-'+R(0,d).toFixed(1)+'s;--dx:'+Math.round(R(-80,80))+'px;--rise:'+Math.round(R(35,75))+'cqh;--o:'+R(.2,.5).toFixed(2)+'"></i>'}sp.innerHTML=h}
+   let b='';for(let i=0;i<22;i++){const a=Math.random()*Math.PI*2,r=R(50,120);b+='<i class="'+(i%3?'':'gr')+'" style="--tx:'+Math.round(Math.cos(a)*r)+'px;--ty:'+Math.round(Math.sin(a)*r*.8)+'px"></i>'}tp.querySelector('.tp-burst').innerHTML=b}
+  {const v=document.querySelector('.tp-ver');if(v){v.querySelectorAll('.tp-vc').forEach((c,k)=>c.style.setProperty('--i',k));if(reduce)v.classList.add('in');else new IntersectionObserver(([e],o)=>{if(e.isIntersecting){v.classList.add('in');o.disconnect()}},{threshold:.25}).observe(v)}}
+  if(reduce){tp.dataset.s='5';return}
+  const T=[1700,2900,1500,1350,1250,1300,1350,2700];let i=0,t=0,vis=false;
+  const go=()=>{clearTimeout(t);if(!vis||document.hidden)return;t=setTimeout(()=>{i++;if(i<T.length){tp.dataset.s=i;go()}else{tp.classList.add('rst');t=setTimeout(()=>{tp.classList.add('nt');tp.dataset.s=0;void tp.offsetWidth;tp.classList.remove('nt');requestAnimationFrame(()=>{tp.classList.remove('rst');i=0;tp.dataset.s=0;go()})},380)}},T[i])};
+  new IntersectionObserver(([e])=>{const was=vis;vis=e.isIntersecting;if(vis&&!was){i=0;tp.classList.add('nt');tp.dataset.s=0;void tp.offsetWidth;tp.classList.remove('nt');go()}else if(!vis)clearTimeout(t)},{threshold:.3}).observe(tp);
+  document.addEventListener('visibilitychange',go);
 })();
 
 /* ---------- interlude: halftone texture (round dots on a straight grid like the app, radius follows two soft hot spots + noise) ---------- */
