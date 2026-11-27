@@ -27,12 +27,12 @@
   --f-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 /* Lenis drives the scroll; native smooth would fight it */
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
-body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;margin:0}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:80;background:var(--bg)}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}
@@ -360,7 +360,8 @@ footer:has(.foot-mega){padding-bottom:0;overflow:hidden}
 .finale .legal{max-width:760px;margin:0}
 .finale .foot-mega{margin-top:56px}
 .finale .foot-links{row-gap:12px}
-@media (max-width:560px){.finale .final .wrap{padding-block:110px 90px}.finale .waitlist{flex-direction:column;max-width:420px}.finale .waitlist input,.finale .waitlist .btn{width:100%;flex:none}.finale .foot-mega{margin-top:40px}}
+@media (max-width:640px){.finale::before{height:520px;background-size:auto 100%;background-position:52% top;opacity:.85}}
+@media (max-width:560px){.finale .final .wrap{padding-block:64px 44px}.finale .waitlist{flex-direction:column;max-width:420px}.finale .waitlist input,.finale .waitlist .btn{width:100%;flex:none}.finale .foot-mega{margin-top:40px}}
 /* section seams, copied from fightapp.com/giveaway: #262626 hairline (their --color-hair) + 1px black line above = bevel */
 .band,.final,.ticker,footer{border-top:1px solid #262626;box-shadow:0 -1px 0 rgba(0,0,0,.85)}
 .band,.final,footer{position:relative}
@@ -449,7 +450,7 @@ footer .brand{color:#fff}
   .us-hero .cta-row,.us-hero .badges{justify-content:flex-start}
   .us-hero .lede{margin-inline:0;font-size:18px}
   .us-hero h1{font-size:clamp(76px,7.6vw,116px)}
-  .hero-pair{display:none}
+  .us-hero .hero-pair{display:none}
   .hero-slot{display:block;position:relative;justify-self:center;width:340px;aspect-ratio:1180/2475}
   .hero-slot::before{content:"";position:absolute;left:50%;top:50%;width:640px;height:640px;translate:-50% -50%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,74,38,.13),rgba(255,74,38,.035) 55%,transparent 75%)}
   .hero-slot::after{content:"";position:absolute;left:16%;right:8%;bottom:-14px;height:22px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.85),rgba(0,0,0,.35) 60%,transparent);filter:blur(5px)}
@@ -474,8 +475,48 @@ footer .brand{color:#fff}
 
 @media (prefers-reduced-motion:reduce){.hs-tilt{transform:perspective(1600px) rotateY(calc(var(--tw) * -24deg)) rotateX(calc(var(--tw) * 7deg)) rotateZ(calc(var(--tw) * 3deg))}}
 .hs-num{transition:opacity .45s ease}
+.hsm-list{display:none}
+@media (max-width:900px){
+  #u-how .hs:not(.hsm){display:none}
+  .hsm-list{display:grid;gap:80px}
+  .hs.hsm{display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center}
+  .hsm .hs-ph{width:min(260px,66vw)}
+  .hsm-ph{position:relative}
+  .hsm-ph::before{content:"";position:absolute;left:50%;top:50%;width:170%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,74,38,.14),transparent 72%);pointer-events:none}
+  .hsm .hs-step{order:-1;min-height:0;opacity:1;padding:0;align-items:center}
+  #u-how .sec-head h2{display:none}
+  #u-how .sec-head{margin-bottom:36px}
+  .hsm .hs-step p{margin-inline:auto;font-size:14px}
+  .hsm .hs-step h3 .sn{color:var(--orange)}
+  .hsm .hs-front,.hsm .hs-glare,.hsm .hs-rim,.hsm .hs-num{display:none}
+}
 /* off-screen sections: freeze their loops (JS toggles .zz) */
 .zz,.zz *,.zz *::before,.zz *::after{animation-play-state:paused!important}
+/* mobile hero: copy left, one phone below (a still clone of the How-it-works phone, same tilt + rim light, no travel) */
+.hero-mph{display:none}
+@media (max-width:1060px){
+  .us-hero .wrap{justify-items:stretch;text-align:center}
+  .us-hero .g-copy{align-items:center}
+  .us-hero .gw-pill{align-self:center}
+  .us-hero .cta-row,.us-hero .badges{justify-content:center}
+  .us-hero .lede{margin-inline:auto;font-size:14px;max-width:36ch}
+  .us-hero h1{font-size:clamp(56px,17vw,120px)}
+  .us-hero .store{height:46px;padding:0 14px 0 12px;gap:9px;border-radius:12px}
+  .us-hero .store small{font-size:8.5px;margin-bottom:3px}
+  .us-hero .store b{font-size:15.5px}
+  .us-hero .store .apple{width:20px;height:20px}
+  .us-hero .hero-pair{display:none}
+  .hero-slot{display:none}
+  .hero-slot::before{content:"";position:absolute;left:50%;top:50%;width:150%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,74,38,.13),rgba(255,74,38,.035) 55%,transparent 75%);pointer-events:none}
+  .hero-slot::after{content:"";position:absolute;left:18%;right:10%;bottom:-12px;height:18px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.85),rgba(0,0,0,.35) 60%,transparent);filter:blur(5px)}
+  .hs-floor{width:160%;height:90px;bottom:-55px}
+  .hero-mph{display:block;--tw:1;transform:perspective(1400px) rotateY(-20deg) rotateX(6deg) rotateZ(3deg)}
+  .hero-mph .hs-ph{width:min(255px,64vw);animation:none;transform:none}
+  .hero-mph .hs-sc{display:none}
+  .hero-mph .hs-sc.hs-s1{display:block;transform:none;filter:none;box-shadow:none}
+  .hero-mph .hs-num,.hero-mph .hs-pop,.hero-mph .swipefx,.hero-mph .s1-glow,.hero-mph .s1-hole{display:none}
+}
+@media (max-width:1060px) and (prefers-reduced-motion:reduce){.hero-mph .hs-front{display:none}}
 .hs.trav .hs-num{opacity:0}
 .sparks>i{position:absolute;border-radius:50%;background:#ffb38a;opacity:0;box-shadow:0 0 8px 2px rgba(255,74,38,.8);animation:spark linear infinite}
 @keyframes spark{0%{opacity:0;translate:0}10%{opacity:var(--o)}80%{opacity:var(--o)}to{translate:var(--dx) calc(var(--rise)*-1);opacity:0;scale:.5}}
@@ -2002,7 +2043,7 @@ html.pt-in .ptx{animation:ptDone 0s .9s forwards}
         <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.4a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.6" r="2.4"/></svg>Most US states</span>
       </div>
     </div>
-    <div class="hero-slot" aria-hidden="true"><i class="hs-floor"></i></div>
+    <div class="hero-slot" aria-hidden="true"><i class="hs-floor"></i><div class="hero-mph"></div></div>
     <div class="hero-pair"><div class="hero-drop" aria-hidden="true"></div><div class="hero-floor" aria-hidden="true"><svg viewBox="0 0 1000 1250"><defs><linearGradient id="flDrop" gradientUnits="userSpaceOnUse" x1="0" y1="700" x2="0" y2="1240"><stop offset="0" stop-color="#ff4a26" stop-opacity=".3"/><stop offset=".45" stop-color="#ff4a26" stop-opacity=".1"/><stop offset="1" stop-color="#ff4a26" stop-opacity="0"/></linearGradient><filter id="flDropBlur" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="22"/></filter><radialGradient id="flFill"><stop offset="0" stop-color="#ff4a26" stop-opacity=".05"/><stop offset=".7" stop-color="#ff4a26" stop-opacity=".02"/><stop offset="1" stop-color="#ff4a26" stop-opacity="0"/></radialGradient><filter id="flGlow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter></defs><polygon points="298,10 702,10 990,298 990,702 702,990 298,990 10,702 10,298" fill="url(#flFill)" stroke="#ff4a26" stroke-opacity=".18" stroke-width="8" filter="url(#flGlow)"/><polygon points="298,10 702,10 990,298 990,702 702,990 298,990 10,702 10,298" fill="none" stroke="#ff7a52" stroke-opacity=".38" stroke-width="2"/><polygon points="339,110 661,110 890,339 890,661 661,890 339,890 110,661 110,339" fill="none" stroke="#ff4a26" stroke-opacity=".09" stroke-width="2"/></svg></div><figure class="hph hph-l"><img src="img/hero-phone-l.png" loading="lazy" width="472" height="1236" alt="Fight App home screen with upcoming fights" fetchpriority="high"><div class="hs-fx" aria-hidden="true"><div class="sparks"></div><div class="hs-smoke"><i></i><i></i><i></i><i></i></div></div></figure><figure class="hph hph-r"><img src="img/hero-phone-r.png" loading="lazy" width="493" height="1290" alt="Fight App fight screen: Mike Perry vs Dillon Danis" fetchpriority="high"><div class="hs-fx" aria-hidden="true"><div class="sparks"></div><div class="hs-smoke"><i></i><i></i><i></i><i></i></div></div></figure></div>
     <div hidden id="scrFight"></div><div hidden id="scrParlay"></div><!-- drawPhones() still writes here -->
   </div>
@@ -2088,7 +2129,7 @@ html.pt-in .ptx{animation:ptDone 0s .9s forwards}
   </div>
 </section>
 <footer><div class="wrap">
-  <div class="foot-top"><a class="brand" href="#us"><img src="img/mark.png" alt="">FIGHT APP</a><div class="foot-links"><a href="#u-how">How it works</a><a href="#u-get">Help</a><a href="#u-get">Terms</a><a href="#u-get">Privacy</a><a href="#u-get">Responsible play</a></div></div>
+  <div class="foot-top"><a class="brand" href="#us"><img src="img/mark.png" alt="">FIGHT APP</a><div class="foot-links"><a href="#u-how">How it works</a><a href="#u-get">Terms</a><a href="#u-get">Privacy</a><a href="#u-get">Responsible play</a></div></div>
   <div class="foot-bot"><p class="legal">Available in most US states; not available in Nevada. Event contracts are offered through a regulated exchange partner. Age and location requirements apply. Screens and prices shown are examples. [Partner disclosure, state list and age copy pending legal review.]</p><span class="copy">© 2026 Fight App</span></div>
 </div>
 </footer>
@@ -2342,6 +2383,20 @@ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.fo
 /* ---------- Hero phone: a few sparks drifting in front of it ---------- */
 (function(){const el=document.querySelector('.hs-front');if(!el)return;const r=(a,b)=>a+Math.random()*(b-a);let h='';for(let i=0;i<9;i++){const d=r(4,8),z=(i%3?r(2,3.4):r(4,6)).toFixed(1);h+='<i class="'+(i%3?'':'bl')+'" style="left:'+r(0,100).toFixed(1)+'%;bottom:'+r(0,40).toFixed(1)+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+d.toFixed(1)+'s;animation-delay:-'+r(0,d).toFixed(1)+'s;--dx:'+Math.round(r(-60,60))+'px;--rise:'+Math.round(r(60,110))+'cqh;--o:'+r(.45,.85).toFixed(2)+'"></i>'}el.innerHTML=h})();
 
+/* ---------- Mobile How it works: three phones, each playing its own step while on screen ---------- */
+(function(){const hs=document.querySelector('.hs'),mm=matchMedia('(max-width:900px)');if(!hs)return;
+  const END=[3200,4300,6400],HOLD=2500;let built=false;
+  const build=()=>{if(built||!mm.matches)return;built=true;const steps=[...hs.querySelectorAll('.hs-step')],src=hs.querySelector('.hs-ph'),list=document.createElement('div');list.className='hsm-list';
+    steps.forEach((st,i)=>{const c=document.createElement('div');c.className='hs hsm';c.dataset.step='';const ph=src.cloneNode(true);ph.classList.remove('swap');
+      const d=ph.querySelector('.hs-num .d');if(d)d.textContent=i+1;ph.querySelectorAll('.rbtn b').forEach(b=>b.textContent='66.7%');
+      const w=document.createElement('div');w.className='hsm-ph';w.appendChild(ph);const t=document.createElement('div');t.className='hs-step on';t.innerHTML=st.innerHTML;{const n=t.querySelector('.step-n'),h=t.querySelector('h3');if(n&&h){h.insertAdjacentHTML('afterbegin','<span class="sn">'+n.textContent+'</span> ');n.remove()}}c.append(w,t);list.appendChild(c);
+      let tok=0,lt;const run=()=>{const k=++tok;c.classList.add('nt');c.dataset.step='';void c.offsetWidth;c.getAnimations({subtree:true}).forEach(a=>{try{a.finish()}catch(e){}});void c.offsetWidth;c.classList.remove('nt','rst');void c.offsetWidth;c.dataset.step=i;
+        clearTimeout(lt);lt=setTimeout(()=>{if(k!==tok)return;c.classList.add('rst');lt=setTimeout(()=>{if(k===tok)run()},400)},END[i]+HOLD)};
+      new IntersectionObserver(([e])=>{if(e.isIntersecting)run();else{tok++;clearTimeout(lt)}},{threshold:.45}).observe(ph)});
+    hs.after(list)};
+  build();if(mm.addEventListener)mm.addEventListener('change',build);
+})();
+
 /* ---------- Hero phone: the How-it-works phone starts in the hero slot and rides the scroll into its sticky spot ---------- */
 (function(){const slot=document.querySelector('.hero-slot'),hs=document.querySelector('.hs');if(!slot||!hs)return;
   const stick=hs.querySelector('.hs-stick'),tilt=hs.querySelector('.hs-tilt'),mq=matchMedia('(min-width:1061px)');
@@ -2360,6 +2415,9 @@ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.fo
   meas();addEventListener('scroll',req,{passive:true});addEventListener('resize',()=>{meas();req()});
   if(mq.addEventListener)mq.addEventListener('change',()=>{meas();req()});
   if(document.fonts)document.fonts.ready.then(()=>{meas();req()});addEventListener('load',()=>{meas();req()});frame();
+  /* mobile: a still copy of the phone sits in the hero (built once, only when the mobile layout is in use) */
+  const mph=slot.querySelector('.hero-mph'),mm=matchMedia('(max-width:1060px)'),build=()=>{if(!mm.matches||!mph||mph.firstChild)return;const c=hs.querySelector('.hs-ph').cloneNode(true);c.classList.remove('swap');mph.appendChild(c)};
+  build();if(mm.addEventListener)mm.addEventListener('change',build);
 })();
 
 /* ---------- Profile: count up the P&L, wipe the chart, then hop to Trophies ---------- */
